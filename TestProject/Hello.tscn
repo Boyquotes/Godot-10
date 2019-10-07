@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Metal-001_1024x768.png" type="Texture" id=1]
+
+[node name="Label" type="Label"]
+margin_left = 302.0
+margin_top = 159.0
+margin_right = 622.0
+margin_bottom = 385.0
+text = "Hello World"
+
+[node name="Metal-001_1024x768" type="Sprite" parent="."]
+position = Vector2( 208, 222 )
+texture = ExtResource( 1 )
