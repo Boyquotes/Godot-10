@@ -1,32 +1,61 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Metal-001_1024x768.png" type="Texture" id=1]
 [ext_resource path="res://buttons (21).png" type="Texture" id=2]
 [ext_resource path="res://buttons (23).png" type="Texture" id=3]
 [ext_resource path="res://buttons (24).png" type="Texture" id=4]
+[ext_resource path="res://Progress.png" type="Texture" id=5]
+[ext_resource path="res://Roboto-Medium.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 49
+font_data = ExtResource( 6 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 49.0
-margin_bottom = 52.0
+margin_left = -11.7548
+margin_top = -9.04213
+margin_right = 37.2452
+margin_bottom = 42.9579
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color( 0.427451, 0.0784314, 0.0784314, 1 )
-margin_left = 84.0
-margin_top = 80.0
-margin_right = 310.0
-margin_bottom = 284.0
+margin_left = -2.80475
+margin_top = 389.242
+margin_right = 223.195
+margin_bottom = 593.242
 texture = ExtResource( 1 )
 expand = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 770.021
-margin_top = 277.079
-margin_right = 918.021
-margin_bottom = 399.079
+margin_left = 809.807
+margin_top = 433.509
+margin_right = 957.807
+margin_bottom = 555.509
 toggle_mode = true
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 expand = true
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 52.8964
+margin_top = 444.107
+margin_right = 975.896
+margin_bottom = 550.107
+value = 80.0
+texture_progress = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.890196, 0.192157, 0.192157, 1 )
+margin_left = 215.169
+margin_top = 461.709
+margin_right = 612.169
+margin_bottom = 580.709
+custom_fonts/font = SubResource( 1 )
+text = "Hello This is
+"
+align = 1
+valign = 1
+percent_visible = -0.125
