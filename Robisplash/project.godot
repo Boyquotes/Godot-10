@@ -15,20 +15,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Code a life bar (start)"
-run/main_scene="res://LevelMockup.tscn"
+config/name="Robisplash"
 config/icon="res://icon.png"
-
-[autoload]
-
-GUI="*res://scenes/GUI.tscn"
-Player="*res://scenes/Player.tscn"
 
 [display]
 
-window/size/width=1366
-window/size/height=768
+window/size/width=800
+window/size/height=450
 
-[gdnative]
+[rendering]
 
-singletons=[  ]
+environment/default_environment="res://default_env.tres"
