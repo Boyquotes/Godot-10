@@ -23,6 +23,7 @@ margin_bottom = 725.0
 color = Color( 0.705882, 0.560784, 0.560784, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 244, 168 )
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
