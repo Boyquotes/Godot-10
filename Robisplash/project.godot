@@ -23,6 +23,10 @@ config/icon="res://icon.png"
 window/size/width=800
 window/size/height=450
 
+[physics]
+
+2d/default_gravity=0
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
