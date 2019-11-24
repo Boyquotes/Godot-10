@@ -19,42 +19,58 @@ extents = Vector2( 250, 10 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="RigidBodyMovement" type="RigidBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 230.9, 94.7575 )
+visible = false
+position = Vector2( 261.774, 384.384 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+[node name="Sprite" type="Sprite" parent="RigidBodyMovement"]
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyMovement"]
 shape = SubResource( 1 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="KinematicMovement" type="KinematicBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 242.891, 218.749 )
+visible = false
+position = Vector2( 148.064, 385.615 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="KinematicMovement"]
 scale = Vector2( 0.164311, 0.162667 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicMovement"]
 shape = SubResource( 2 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Platforms" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 393.996, 431.311 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
 position = Vector2( 174.337, -106.796 )
 rotation = 2.66512
 shape = SubResource( 4 )
+
+[node name="LookAt" type="RigidBody2D" parent="."]
+position = Vector2( 355.131, 259.418 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="LookAt"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LookAt"]
+shape = SubResource( 1 )
