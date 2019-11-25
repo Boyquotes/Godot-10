@@ -1,29 +1,31 @@
 extends KinematicBody2D
 
-var Bullet = preload("res://Bullet.tscn") # A PackedScene!
-var speed = 200
+export (int) var run_speed = 100
+export (int) var jump_speed = -400
+export (int) var gravity = 1200
+
 var velocity = Vector2()
+var jumping = false
 
 func get_input():
-	# Add these actions in Project Setting -> Input Map...
-	velocity = Vector2() # I believe Vector2() gets the current position of the node... No! This resets the velocity so it stops as soon as the key is released!
-	if Input.is_action_pressed('backward'):
-		velocity = Vector2(-speed/3, 0).rotated(rotation)
-	if Input.is_action_pressed('forward'):
-		velocity = Vector2(speed/3, 0).rotated(rotation)
-	if Input.is_action_just_pressed('mouse_click'):
-		shoot()
+	velocity.x = 0
+	var right = Input.is_action_pressed('ui_right')
+	var left = Input.is_action_pressed('ui_left')
+	var jump = Input.is_action_just_pressed('ui_select')
 	
-func shoot():
-	# "Muzzle" is a Position2D placed at the barrel of the gun...
-	var b = Bullet.instance() #PackedScene.instance()
-	b.start($Muzzle.global_position, rotation) # Where did the start method come from? It came from the Bullet script! I'm a dumbass!
-	get_parent().add_child(b)
-
+	if jump and is_on_floor(): # is_on_floor() is a function of KinematicBody2D
+		jumping = true
+		velocity.y = jump_speed # Oh! Vector2 is not a position but movement of the KinematicBody2D! So setting -500 will move up at that pace!
+	if right:
+		velocity.x += run_speed
+	if left:
+		velocity.x -= run_speed
+	
 func _physics_process(delta):
 	get_input()
-	var dir = get_global_mouse_position() - global_position # Method in CanvasItem
-	# Don't move if too close to the mouse pointer
-	if dir.length() > 5:
-		rotation = dir.angle()
-		velocity = move_and_slide(velocity) # moves due to move_and_slide... is returning velocity necessary? Yeah... it's not really necessary.
+	velocity.y += gravity * delta
+	if jumping and is_on_floor():
+		jumping = false
+	velocity = move_and_slide(velocity, Vector2(0, -1)) # This returns a vector representing the movement that remained after the slide collision occurred. Setting this back to velocity will make it smoother!
+	# move_and_slide(velocity, Vector2(0, -1))
+	

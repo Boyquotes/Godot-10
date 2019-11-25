@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.5646, 28.2633 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 169.461, 10 )
+
+[node name="Platformer" type="Node"]
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 130.868, 173.499 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+position = Vector2( -31.3236, -24.186 )
+scale = Vector2( 4.34512, 4.00696 )
+polygon = PoolVector2Array( -0.297737, -0.997253, 14.699, -0.997253, 14.7717, 13.0207, -0.297737, 13.0994 )
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2( 201.995, 265.466 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource( 2 )
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2( 521.665, 205.701 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platform2"]
+polygon = PoolVector2Array( 3.60248, -5.4684, -80.7165, 16.3063, -149.747, 48.2733, -147.894, 90.8961, 124.985, 50.5898, 123.595, -53.6507, 55.491, -82.838 )
