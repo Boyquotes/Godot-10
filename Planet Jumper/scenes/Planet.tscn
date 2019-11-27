@@ -7,11 +7,13 @@
 radius = 31.3991
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 125.108
+radius = 184.922
 
 [node name="Planet" type="RigidBody2D"]
-position = Vector2( 622.477, 300.489 )
+position = Vector2( 623.212, 300.489 )
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -28,7 +30,8 @@ shape = SubResource( 1 )
 [node name="Area2D" type="Area2D" parent="."]
 space_override = 3
 gravity_point = true
-gravity_vec = Vector2( 0, 100 )
+gravity_vec = Vector2( 0, 0 )
+gravity = 50.0
 __meta__ = {
 "_edit_group_": true
 }
