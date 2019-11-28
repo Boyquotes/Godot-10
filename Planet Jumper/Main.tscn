@@ -9,9 +9,9 @@
 position = Vector2( 395.913, 156.704 )
 
 [node name="Planet2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 545.913, 182.704 )
+position = Vector2( 642.748, 197.136 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 556.653, 354.775 )
+position = Vector2( 621.831, 344.533 )
 [connection signal="body_entered" from="Planet" to="Player" method="_on_Planet_body_entered"]
 [connection signal="body_entered" from="Planet2" to="Player" method="_on_Planet_body_entered"]
