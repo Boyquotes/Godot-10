@@ -3,18 +3,18 @@
 [ext_resource path="res://scripts/Planet.gd" type="Script" id=1]
 [ext_resource path="res://assets/planets/planet_1.png" type="Texture" id=2]
 
-[sub_resource type="PhysicsMaterial" id=3]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 31.3991
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 184.922
 
 [node name="Planet" type="RigidBody2D"]
 position = Vector2( 623.212, 300.489 )
-physics_material_override = SubResource( 3 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
@@ -30,7 +30,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.794434, -1.19165 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 space_override = 3
@@ -42,4 +42,4 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
