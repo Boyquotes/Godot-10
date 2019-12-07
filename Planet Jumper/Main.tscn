@@ -6,10 +6,10 @@
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 278.318, 165.349 )
+position = Vector2( 393.318, 204.349 )
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 480.656, 311.554 )
+position = Vector2( 433.656, 244.554 )
 [connection signal="body_entered" from="Planet" to="Player" method="_on_Planet_body_entered"]
 [connection signal="planet_position" from="Planet" to="Player" method="_on_Planet_planet_position"]
 [connection signal="planet_velocity" from="Planet" to="Player" method="_on_Planet_planet_velocity"]
