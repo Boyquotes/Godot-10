@@ -1,22 +1,47 @@
 extends RigidBody2D
 
-var attached = false
-
-var attached_planet_position = Vector2()
-var planet_global_position = Vector2()
+# Variable initializations
+var is_attached = false
+var attached_planet
+var rotation_speed = 10
+var jump_speed = Vector2(1000, 0)
 	
+# Run on physics process
 func _physics_process(delta):
-	rotate_player(delta)
+	rotate_player(delta, is_attached, attached_planet)
 
-func rotate_player(delta):
-	# wrong because planet_global_position changes constantly
-	if (Input.is_action_pressed("ui_left")):
-		# Rotate counterclockwise
-		rotate_around(planet_global_position, self.global_position, -delta*10)
-	if (Input.is_action_pressed("ui_right")):
-		# Rotate clockwise
-		rotate_around(planet_global_position, self.global_position, delta*10)
+# Run on input trigger
+func _input(event):
+	player_jump(event, jump_speed)
 
+# Player jumps away from the planet
+func player_jump(input_event, jump_speed):
+	if (input_event.is_action_pressed("ui_select")):
+		is_attached = false
+		self.applied_force = jump_speed
+
+# 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
+func rotate_player(delta, is_attached, cur_planet):
+	if (is_attached):
+		var planet_position = cur_planet.get_global_position()
+		var planet_velocity = cur_planet.get_linear_velocity()
+
+		# Keyboard input
+		if (Input.is_action_pressed("ui_left")):
+			# Rotate counterclockwise
+			rotate_around(planet_position, self.global_position, -delta*rotation_speed)
+		if (Input.is_action_pressed("ui_right")):
+			# Rotate clockwise
+			rotate_around(planet_position, self.global_position, delta*rotation_speed)
+		
+		# Reorient the player
+		look_at(planet_position)
+		rotate(-PI/2)
+
+		# Set velocity equal to attached planet
+		self.set_linear_velocity(planet_velocity)
+
+# Calculation for rotating the object around origin at given angle
 func rotate_around(origin, player_pos, angle):
 	var s = sin(angle)
 	var c = cos(angle)
@@ -29,46 +54,9 @@ func rotate_around(origin, player_pos, angle):
 	
 	global_position.x = new_x + origin.x
 	global_position.y = new_y + origin.y
-	
-#	print("Angle: ", angle)
-#	print("New Player: (", self.global_position.x, ", ", self.global_position.y, ")")
-	
-func _on_Planet_planet_position(position):
-	planet_global_position = position
-	
-func _integrate_forces(state):
-	if (attached):
-		look_follow(state, get_global_transform(), attached_planet_position)
 
-# Voodoo magic if this works... damn it! ok voodoo magic
-func look_follow(state, current_transform, target_position):
-	var cur_dir = current_transform.basis_xform(Vector2(-1,0)) # Need to make it a vector@
-	var target_dir = (target_position - current_transform.origin).normalized()
-	var rotation_angle = acos(cur_dir.x) - acos(target_dir.x)
-	
-	state.set_angular_velocity(rotation_angle / state.get_step())
-	
-# Currently set to Contacts Reported == 1... 1 will be enough... for now.
-func _on_Planet_body_entered(body):
-	if (body.name == "Player"):
-		print("Player Collision")
-		
-		# Set the player "attached" to the collided planet
-		set_linear_velocity(body.linear_velocity)
-		
-		# Either disable player to be effected by planet's gravity or disable the gravity of the planet...
-		attached = true # This will allow the Player's velocity equal to the planet's velocity at all times.... hopefully...
-		gravity_scale = 0.0 # Disable the player's ability to be contracted to gravity
-		
-		# Reorient the player object to face the correct direction
-		attached_planet_position = body.get_global_transform().origin # transform's translation offset == origin??? What does that mean?
-	
-	if (body.name == "Planet"):
-		print("Planet Collision")
-
-# This happens every time... this might be replaced with a global variable
-func _on_Planet_planet_velocity(planet_velocity):
-	# If the player has made contact (attached == true) to a planet, set the player's velocity equal to the attached planet
-	if attached:
-		# Setting the player's velocity equal to planet's velocity
-		set_linear_velocity(planet_velocity)
+# Indicator when player has collided with a planet. Gets attached planet's data.
+func _on_Planet_planet(planet):
+	self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
+	attached_planet = planet # Where attached planet data is derived
+	is_attached = true # Simple indicator whether player has collided with a planet
