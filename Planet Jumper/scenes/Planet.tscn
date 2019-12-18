@@ -36,7 +36,7 @@ shape = SubResource( 2 )
 space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
-gravity = 50.0
+gravity = 150.0
 __meta__ = {
 "_edit_group_": true
 }

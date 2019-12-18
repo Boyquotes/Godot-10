@@ -1,12 +1,15 @@
 extends RigidBody2D
 
-signal jumping
-
 # Variable initializations
 var is_attached = false
 var attached_planet
 var rotation_speed = 10
-var jump_speed = 1000.0
+var jump_speed = 250.0
+
+# Run on start up
+func _ready():
+#	self.set_linear_velocity(Vector2(100, 0))
+	pass
 	
 # Run on physics process
 func _physics_process(delta):
@@ -21,12 +24,10 @@ func player_jump(input_event, jump_speed):
 	if (input_event.is_action_pressed("ui_select") && is_attached):
 		# Make the player jump directly above
 		var jumpDirection = (self.get_global_position() - attached_planet.get_global_position()).normalized()
-		self.set_applied_force(jumpDirection * jump_speed) # Player will carry the momentum of the traveling planet
+		self.set_linear_velocity(jumpDirection * jump_speed) # Player will carry the momentum of the traveling planet
 		
 		is_attached = false
-		
-		# Sends signal to the planet to detach with the player
-		emit_signal("jumping", is_attached)
+		self.gravity_scale = 1.0
 
 # 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
 func rotate_player(delta):
@@ -63,12 +64,11 @@ func rotate_around(origin, player_pos, angle):
 	
 	global_position.x = new_x + origin.x
 	global_position.y = new_y + origin.y
-	
 
-# Indicator when player has collided with a planet. Gets attached planet's data.
-func _on_Planet_planet(planet):
+# When player collides with other objects
+func _on_Player_body_entered(body):
 	if (!is_attached):
 		# print("Planet running")
 		self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
-		attached_planet = planet # Where attached planet data is derived
+		attached_planet = body # Where attached planet data is derived
 		is_attached = true # Simple indicator whether player has collided with a planet

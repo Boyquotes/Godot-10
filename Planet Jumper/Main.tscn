@@ -6,8 +6,17 @@
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 31.318, 271.349 )
+position = Vector2( 478.621, 202.867 )
+contacts_reported = 1
+contact_monitor = true
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 182.504, 280.046 )
-[connection signal="planet" from="Planet" to="Player" method="_on_Planet_planet"]
+position = Vector2( 528.384, 202.895 )
+contacts_reported = 0
+contact_monitor = false
+
+[node name="Planet2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 335.939, 307.786 )
+contacts_reported = 0
+contact_monitor = false
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
