@@ -19,4 +19,8 @@ contact_monitor = false
 position = Vector2( 335.939, 307.786 )
 contacts_reported = 0
 contact_monitor = false
-[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+
+[node name="Planet3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 599.466, 435.215 )
+contacts_reported = 0
+contact_monitor = false

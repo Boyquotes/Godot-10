@@ -33,3 +33,6 @@ extends RigidBody2D
 #	print("jumping ran")
 #	is_player_attached = false
 #
+
+func _on_Planet_body_exited(body):
+	pass # Replace with function body.

@@ -4,7 +4,7 @@ extends RigidBody2D
 var is_attached = false
 var attached_planet
 var rotation_speed = 10
-var jump_speed = 250.0
+var jump_speed = 150.0
 
 # Run on start up
 func _ready():
