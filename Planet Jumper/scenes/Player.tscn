@@ -12,6 +12,8 @@ radius = 14.4571
 [node name="Player" type="RigidBody2D"]
 position = Vector2( 231.491, 197.196 )
 physics_material_override = SubResource( 1 )
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 0.0
 script = ExtResource( 1 )
 __meta__ = {

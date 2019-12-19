@@ -4,9 +4,15 @@ extends RigidBody2D
 #
 ## Define & initialize variables
 #var is_player_attached = false
+#var attached_player
 #
 #func _ready():
-#	get_parent().get_node("Player").connect("jumping", self, "_on_Player_jumping")
+#	# Is there a way to move a node from parent being Main to parent being Planet?
+#	var pla = (get_parent().get_node("Player"))
+#	add_child(pla)
+#	print("Dank")
+#	pass
+#	# get_parent().get_node("Player").connect("jumping", self, "_on_Player_jumping")
 #
 #func _process(delta):
 ##	print("is_player_attached: ", is_player_attached)
@@ -32,7 +38,15 @@ extends RigidBody2D
 #func _on_Player_jumping(is_jumping):
 #	print("jumping ran")
 #	is_player_attached = false
-#
 
-func _on_Planet_body_exited(body):
-	pass # Replace with function body.
+### This may cause problems due to the code being unable to distinguish between turning off/on attached planet's gravity vs other planets' gravities that are just encompassed within it
+# If the player collides with the planet, disable Area2D's gravity field
+#func _on_Planet_body_entered(body):
+#	# print("Hello")
+#	# print(self.get_child(2).name)
+#	self.get_child(2).gravity = 0 # bad idea... better to control one player
+#	# attached_player = body # bad idea
+
+# If the player exits the planet's Area2D, turn back the gravity field
+#func _on_Area2D_area_exited(area):
+#	pass # Replace with function body.

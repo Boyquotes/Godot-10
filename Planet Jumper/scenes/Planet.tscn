@@ -43,4 +43,5 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
-[connection signal="body_exited" from="." to="." method="_on_Planet_body_exited"]
+[connection signal="body_entered" from="." to="." method="_on_Planet_body_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
