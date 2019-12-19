@@ -13,6 +13,14 @@ extends RigidBody2D
 #	print("Dank")
 #	pass
 #	# get_parent().get_node("Player").connect("jumping", self, "_on_Player_jumping")
+#var moved_node = whatever.new()
+#parent1.add_node(moved_node)
+#
+#### Later
+#
+#var moved_node = parent1.get_node("moved_node_name")
+#parent1.remove_node("moved_node_name")
+#parent2.add_node(moved_node)
 #
 #func _process(delta):
 ##	print("is_player_attached: ", is_player_attached)
