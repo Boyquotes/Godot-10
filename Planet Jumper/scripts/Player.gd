@@ -25,9 +25,10 @@ func player_jump(input_event, jump_speed):
 		# Make the player jump directly above
 		var jumpDirection = (self.get_global_position() - attached_planet.get_global_position()).normalized()
 		self.set_linear_velocity(jumpDirection * jump_speed) # Player will carry the momentum of the traveling planet
+		attached_planet.set_linear_velocity(-jumpDirection * jump_speed)
 		
 		is_attached = false
-		self.gravity_scale = 1.0
+		self.gravity_scale = 1.0 # TODO player is affected by the attached_planet's gravity before it gets out of its gravity field range....
 
 # 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
 func rotate_player(delta):
