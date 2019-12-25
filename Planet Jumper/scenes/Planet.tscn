@@ -7,13 +7,13 @@
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 31.3991
+radius = 61.3135
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 184.922
+radius = 175.419
 
 [node name="Planet" type="RigidBody2D"]
-position = Vector2( 623.212, 300.489 )
+position = Vector2( 694.433, 298.216 )
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
@@ -37,11 +37,10 @@ space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
 gravity = 150.0
+collision_mask = 0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
-[connection signal="body_entered" from="." to="." method="_on_Planet_body_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
