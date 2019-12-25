@@ -4,7 +4,7 @@ extends RigidBody2D
 var is_attached = false
 var attached_planet
 var rotation_speed = 2
-var jump_speed = 50.0
+var jump_speed = 100.0
 
 # Run on start up
 func _ready():
@@ -70,16 +70,26 @@ func rotate_around(origin, player_pos, angle):
 
 # When player collides with other objects
 func _on_Player_body_entered(body):
+	# If body is a planet, then allow the player to be attached to the planet
+	self.mass = 0.01
+	self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
+	attached_planet = body # Where attached planet data is derived
+	is_attached = true # Simple indicator whether player has collided with a planet
+	attached_planet.get_child(2).set_collision_layer_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
+	
+	"""
 	# Reenable the gravity of planet that the player jumped away from...
 	if (attached_planet):
 		if (attached_planet.name != body.name):
-			attached_planet.get_child(2).set_collision_layer_bit(0, true)
+			
 			self.mass = 0.01
 			self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
 			attached_planet = body # Where attached planet data is derived
 			is_attached = true # Simple indicator whether player has collided with a planet
 	
-	if (!is_attached):
+	if (!is_attached): # irrelevant because it will be always attached to something
+		self.mass = 0.01
 		self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
 		attached_planet = body # Where attached planet data is derived
 		is_attached = true # Simple indicator whether player has collided with a planet
+	"""
