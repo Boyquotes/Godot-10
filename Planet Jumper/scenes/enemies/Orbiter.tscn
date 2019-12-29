@@ -9,6 +9,8 @@ height = 17.9618
 [node name="Orbiter" type="KinematicBody2D"]
 position = Vector2( 126.496, 70.2758 )
 scale = Vector2( 0.2, 0.2 )
+collision_layer = 4
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }

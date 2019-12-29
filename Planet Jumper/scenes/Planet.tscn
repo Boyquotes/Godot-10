@@ -13,6 +13,8 @@ radius = 175.419
 
 [node name="Planet" type="RigidBody2D"]
 position = Vector2( 694.433, 298.216 )
+collision_layer = 2
+collision_mask = 7
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
@@ -35,7 +37,7 @@ space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
 gravity = 150.0
-collision_mask = 0
+collision_layer = 0
 __meta__ = {
 "_edit_group_": true
 }

@@ -7,17 +7,10 @@ var rand_rotation = 0.01
 # Run on start up
 func _ready():
 	parent_planet = self.get_parent()
-	print (rand_range(0,1) - 0.5)
-	print (rand_range(0,1) - 0.5)
-	print (rand_range(0,1) - 0.5)
-	print (rand_range(0,1))
-	print (rand_range(0,1))
-	print (rand_range(0,1))
-	# var test = int(randi()%2 - (1/2))
-	var test = rand_range(0,1) - 0.5
-	# print (test)
-	rand_rotation *= test
-	# print(rand_rotation)
+	
+	# Determine the direction of enemy rotation
+	if (randi()%2 == 0):
+		rand_rotation *= -1
 
 # Run on every physics process
 func _physics_process(delta):

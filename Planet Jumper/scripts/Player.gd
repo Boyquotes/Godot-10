@@ -31,7 +31,7 @@ func player_jump(input_event, jump_speed):
 		
 		is_attached = false
 		self.gravity_scale = 1.0
-		attached_planet.get_child(2).set_collision_layer_bit(0, false)
+		attached_planet.get_child(2).set_collision_mask_bit(0, false)
 
 # 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
 func rotate_player(delta):
@@ -73,6 +73,9 @@ func _on_Player_body_entered(body):
 	# If body is a planet, then allow the player to be attached to the planet
 	self.mass = 0.01
 	self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
+	
+	if (attached_planet):
+		attached_planet.get_child(2).set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
 	attached_planet = body # Where attached planet data is derived
 	is_attached = true # Simple indicator whether player has collided with a planet
-	attached_planet.get_child(2).set_collision_layer_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
+	
