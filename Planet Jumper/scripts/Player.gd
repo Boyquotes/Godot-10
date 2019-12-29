@@ -76,20 +76,3 @@ func _on_Player_body_entered(body):
 	attached_planet = body # Where attached planet data is derived
 	is_attached = true # Simple indicator whether player has collided with a planet
 	attached_planet.get_child(2).set_collision_layer_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
-	
-	"""
-	# Reenable the gravity of planet that the player jumped away from...
-	if (attached_planet):
-		if (attached_planet.name != body.name):
-			
-			self.mass = 0.01
-			self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
-			attached_planet = body # Where attached planet data is derived
-			is_attached = true # Simple indicator whether player has collided with a planet
-	
-	if (!is_attached): # irrelevant because it will be always attached to something
-		self.mass = 0.01
-		self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
-		attached_planet = body # Where attached planet data is derived
-		is_attached = true # Simple indicator whether player has collided with a planet
-	"""
