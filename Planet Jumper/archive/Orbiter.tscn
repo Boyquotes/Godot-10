@@ -4,15 +4,12 @@
 [ext_resource path="res://assets/enemies/orbiter.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 370.935
-height = 251.706
+radius = 60.3897
+height = 17.9618
 
-[node name="Orbiter" type="Area2D"]
-scale = Vector2( 0.02, 0.02 )
-gravity_vec = Vector2( 0, 0 )
-gravity = 0.0
-linear_damp = 0.0
-angular_damp = 0.0
+[node name="Orbiter" type="KinematicBody2D"]
+position = Vector2( 126.496, 70.2758 )
+scale = Vector2( 0.2, 0.2 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 1 )
@@ -21,6 +18,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.136171, 0.155692 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

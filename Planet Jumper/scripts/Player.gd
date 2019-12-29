@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal hit
+
 # Variable initializations
 var is_attached = false
 var attached_planet
@@ -22,16 +24,17 @@ func _input(event):
 func player_jump(input_event, jump_speed):
 	if (input_event.is_action_pressed("ui_select") && is_attached):
 		# Make the player jump directly above
-		var jumpDirection = (self.get_global_position() - attached_planet.get_global_position()).normalized()
-		self.set_linear_velocity(jumpDirection * jump_speed)
+		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
+		set_linear_velocity(jumpDirection * jump_speed)
 		
 		# Planet rebounds on the opposite direction based on planet's mass
-		self.mass = 1.00
-		attached_planet.linear_velocity = (attached_planet.get_linear_velocity()*attached_planet.mass - self.get_linear_velocity()*self.mass) / attached_planet.mass
+		mass = 1.00
+		attached_planet.linear_velocity = (attached_planet.get_linear_velocity()*attached_planet.mass - get_linear_velocity()*mass) / attached_planet.mass
 		
 		is_attached = false
-		self.gravity_scale = 1.0
-		attached_planet.get_child(2).set_collision_mask_bit(0, false)
+		gravity_scale = 1.0
+		# attached_planet.get_child(2).set_collision_mask_bit(0, false)
+		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
 
 # 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
 func rotate_player(delta):
@@ -42,40 +45,50 @@ func rotate_player(delta):
 		# Keyboard input
 		if (Input.is_action_pressed("ui_left")):
 			# Rotate counterclockwise
-			rotate_around(planet_position, self.global_position, -delta*rotation_speed)
+			rotate_around(planet_position, get_global_position(), -delta*rotation_speed)
 		if (Input.is_action_pressed("ui_right")):
 			# Rotate clockwise
-			rotate_around(planet_position, self.global_position, delta*rotation_speed)
+			rotate_around(planet_position, get_global_position(), delta*rotation_speed)
 		
 		# Reorient the player
-		self.look_at(planet_position)
-		self.rotate(-PI/2)
+		look_at(planet_position)
+		rotate(-PI/2)
 
 		# Set velocity equal to attached planet
-		self.set_linear_velocity(planet_velocity)
+		set_linear_velocity(planet_velocity)
 
 # Calculation for rotating the object around origin at given angle
 func rotate_around(origin, player_pos, angle):
 	var s = sin(angle)
 	var c = cos(angle)
 	
-	player_pos.x -= origin.x
-	player_pos.y -= origin.y
+	var update_pos = Vector2()
+	update_pos.x = player_pos.x - origin.x
+	update_pos.y = player_pos.y - origin.y
 	
-	var new_x = player_pos.x * c - player_pos.y * s
-	var new_y = player_pos.x * s + player_pos.y * c
+	var new = Vector2()
+	new.x = update_pos.x * c - update_pos.y * s
+	new.y = update_pos.x * s + update_pos.y * c
 	
-	global_position.x = new_x + origin.x
-	global_position.y = new_y + origin.y
+	global_position.x = new.x + origin.x
+	global_position.y = new.y + origin.y
 
 # When player collides with other objects
 func _on_Player_body_entered(body):
-	# If body is a planet, then allow the player to be attached to the planet
-	self.mass = 0.01
-	self.gravity_scale = 0.0 # Prevents the player from being affected by gravity
-	
-	if (attached_planet):
-		attached_planet.get_child(2).set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
-	attached_planet = body # Where attached planet data is derived
-	is_attached = true # Simple indicator whether player has collided with a planet
+	# If body is a planet, then allow the player to be attached to the plane, else then the player collides with an enemy and emit a hit signal
+	if (body.get_collision_layer_bit(1)):
+		mass = 0.01
+		gravity_scale = 0.0 # Prevents the player from being affected by gravity
+		
+		if (attached_planet):
+			# attached_planet.get_child(2).set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
+			attached_planet.get_node("Area2D").set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
+		attached_planet = body # Where attached planet data is derived
+		is_attached = true # Simple indicator whether player has collided with a planet
+	else:
+		# Hide the player and 
+		hide()
+		emit_signal("hit")
+		# get_child(1).disabled = true
+		$CollisionShape2D.set_deferred("disabled", true)
 	
