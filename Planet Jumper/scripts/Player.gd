@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-signal hit
+signal win_condition # When the player wins or loses either by an enemy or reaching the target planet
 
 # Variable initializations
 var is_attached = false
 var attached_planet
-var rotation_speed = 2
-var jump_speed = 100.0
+export var rotation_speed = 2
+export var jump_speed = 100.0
 
 # Run on start up
 func _ready():
@@ -77,6 +77,8 @@ func rotate_around(origin, player_pos, angle):
 func _on_Player_body_entered(body):
 	# If body is a planet, then allow the player to be attached to the plane, else then the player collides with an enemy and emit a hit signal
 	if (body.get_collision_layer_bit(1)):
+		if (body.target_planet):
+			emit_signal("win_condition", true)
 		mass = 0.01
 		gravity_scale = 0.0 # Prevents the player from being affected by gravity
 		
@@ -88,7 +90,9 @@ func _on_Player_body_entered(body):
 	else:
 		# Hide the player and 
 		hide()
-		emit_signal("hit")
-		# get_child(1).disabled = true
+		emit_signal("win_condition", false)
 		$CollisionShape2D.set_deferred("disabled", true)
 	
+
+func _on_VisibilityEnabler2D_screen_exited():
+	emit_signal("win_condition", false)

@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 # Frees enemy
 func free_enemy():
