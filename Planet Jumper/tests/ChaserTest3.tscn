@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://tests/Chaser.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemies/Chaser.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/chaser.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=4]
 
 [node name="ChaserTest3" type="Node"]
 
 [node name="Chaser" type="RigidBody2D" parent="."]
-position = Vector2( 276.976, 364.623 )
+editor/display_folded = true
+position = Vector2( 82.9379, 339.353 )
 collision_layer = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+max_see_ahead = 75.0
+max_avoid_force = 125.0
 
 [node name="Sprite" type="Sprite" parent="Chaser"]
 scale = Vector2( 0.075, 0.075 )
@@ -22,5 +26,17 @@ texture = ExtResource( 2 )
 polygon = PoolVector2Array( -0.171211, -19.3649, 5.76616, 1.87764, 22.6547, 8.87054, 21.0714, 10.8497, 9.13066, 10.19, 9.19663, 17.9085, -9.73697, 18.6342, -9.34114, 9.92607, -22.5353, 11.1795, -22.0075, 7.35321, -6.17455, 2.40541 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 935.442, 364.159 )
+position = Vector2( 973.347, 320.839 )
 mode = 3
+
+[node name="Planet" parent="." instance=ExtResource( 4 )]
+position = Vector2( 575.303, 297.313 )
+
+[node name="Planet2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 759.413, 378.539 )
+
+[node name="Planet3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 378.557, 365.001 )
+
+[node name="Planet4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 217.009, 299.119 )

@@ -106,6 +106,6 @@ func _on_Player_body_entered(body):
 		emit_signal("win_condition", false)
 		$CollisionShape2D.set_deferred("disabled", true)
 	
-
+# If the player is not visible then make it a game over
 func _on_VisibilityEnabler2D_screen_exited():
 	emit_signal("win_condition", false)
