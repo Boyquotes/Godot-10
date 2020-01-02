@@ -9,6 +9,8 @@ height = 362.506
 
 [node name="Orbiter" type="RigidBody2D"]
 position = Vector2( 28.0141, 23.4148 )
+collision_layer = 4
+collision_mask = 3
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true

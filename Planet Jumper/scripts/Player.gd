@@ -19,6 +19,19 @@ func _physics_process(delta):
 # Run on input trigger
 func _input(event):
 	player_jump(event, jump_speed)
+	player_move_test(event)
+
+# Test function that moves the players
+func player_move_test(input_event):
+	# Only works if it's in Kinematic mode
+	if (input_event.is_action_pressed("ui_left")):
+		global_position.x -= 50
+	elif (input_event.is_action_pressed("ui_right")):
+		global_position.x += 50
+	elif (input_event.is_action_pressed("ui_up")):
+		global_position.y -= 50
+	elif (input_event.is_action_pressed("ui_down")):
+		global_position.y += 50
 
 # Player jumps away from the planet
 func player_jump(input_event, jump_speed):
