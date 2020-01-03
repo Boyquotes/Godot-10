@@ -2,7 +2,7 @@ extends "res://scripts/enemies/Enemy.gd"
 
 # Variable initialization
 var parent_planet
-export(float) var rotation_velocity = 0.01
+export(float) var rotation_velocity = 1
 
 # Run on start up
 func _ready():

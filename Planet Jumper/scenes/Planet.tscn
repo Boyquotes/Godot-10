@@ -7,10 +7,10 @@
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 29.1301
+radius = 29.6395
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 175.419
+radius = 188.189
 
 [node name="Planet" type="RigidBody2D"]
 position = Vector2( 694.433, 298.216 )
