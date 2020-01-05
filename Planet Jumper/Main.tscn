@@ -26,7 +26,7 @@ target_planet = true
 
 [node name="Planet2" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 237.128, 434.402 )
+position = Vector2( 384.308, 226.812 )
 
 [node name="Orbiter" parent="Planet2" instance=ExtResource( 5 )]
 position = Vector2( -5.25854, 55.9137 )
@@ -34,7 +34,7 @@ rotation_velocity = 5.0
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 163.618, 148.102 )
+position = Vector2( 162.125, 140.635 )
 
 [node name="Planet4" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
@@ -46,7 +46,7 @@ rotation_velocity = 10.0
 
 [node name="Walls" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
-position = Vector2( 872.419, 534.113 )
+position = Vector2( 599.86, 434.797 )
 
 [node name="Sprite" parent="Walls" index="0"]
 rotation = 0.785398
