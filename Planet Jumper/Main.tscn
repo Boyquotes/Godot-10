@@ -63,8 +63,10 @@ scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 7 )]
 position = Vector2( -3.09512, 13.1543 )
+max_speed = 50.0
+max_force = 5.0
 max_see_ahead = 50.0
-max_avoid_force = 150.0
+max_avoid_force = 80.0
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Walls"]
