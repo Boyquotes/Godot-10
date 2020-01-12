@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8262, 192.685 )
@@ -21,21 +20,23 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 292.324, 408.234 )
-mode = 3
+position = Vector2( 452.781, 157.367 )
 rotation_speed = 4
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
 position = Vector2( 712.23, 489.34 )
 target_planet = true
 
-[node name="Planet2" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
-position = Vector2( 508.927, 124.184 )
+[node name="Planet5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 251.22, 453.502 )
+target_planet = true
 
-[node name="Orbiter" parent="Planet2" instance=ExtResource( 5 )]
-position = Vector2( -5.25854, 55.9137 )
-rotation_velocity = 5.0
+[node name="Planet6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 449.145, 378.567 )
+target_planet = true
+
+[node name="Planet2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 481.234, 166.539 )
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
@@ -65,13 +66,6 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
-
-[node name="Chaser" parent="." instance=ExtResource( 7 )]
-position = Vector2( -4.88705, -3.25798 )
-mass = 10.0
-max_force = 0.35
-max_see_ahead = 100.0
-max_avoid_force = 500.0
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Walls"]
