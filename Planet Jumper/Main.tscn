@@ -20,7 +20,7 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 452.781, 157.367 )
+position = Vector2( 422.645, 181.802 )
 rotation_speed = 4
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
@@ -28,7 +28,7 @@ position = Vector2( 712.23, 489.34 )
 target_planet = true
 
 [node name="Planet5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 251.22, 453.502 )
+position = Vector2( 102.981, 508.888 )
 target_planet = true
 
 [node name="Planet6" parent="." instance=ExtResource( 4 )]
@@ -36,15 +36,15 @@ position = Vector2( 449.145, 378.567 )
 target_planet = true
 
 [node name="Planet2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 481.234, 166.539 )
+position = Vector2( 427.477, 149.434 )
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 250.091, 260.367 )
+position = Vector2( 50.5379, 206.61 )
 
 [node name="Planet4" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 817.464, 172.863 )
+position = Vector2( 766.965, 136.21 )
 
 [node name="Orbiter" parent="Planet4" instance=ExtResource( 5 )]
 position = Vector2( -112.814, 5.6178 )
