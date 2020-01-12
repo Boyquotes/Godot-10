@@ -9,12 +9,13 @@
 
 [node name="Chaser" type="RigidBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 82.9379, 339.353 )
+position = Vector2( 84.743, 341.158 )
 collision_layer = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+max_speed = 50.0
 max_see_ahead = 75.0
 max_avoid_force = 125.0
 
@@ -36,7 +37,7 @@ position = Vector2( 575.303, 297.313 )
 position = Vector2( 759.413, 378.539 )
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 378.557, 365.001 )
+position = Vector2( 404.73, 328.901 )
 
 [node name="Planet4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 217.009, 299.119 )
+position = Vector2( 219.717, 324.389 )

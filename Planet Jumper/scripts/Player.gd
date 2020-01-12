@@ -8,6 +8,9 @@ var attached_planet
 export var rotation_speed = 2
 export var jump_speed = 100.0
 
+var velocity = Vector2() # Test variable
+var get_current_pos = Vector2() # Test variable
+
 # Run on start up
 func _ready():
 	pass
@@ -15,23 +18,29 @@ func _ready():
 # Run on physics process
 func _physics_process(delta):
 	rotate_player(delta)
+	
+	# Test statements
+	player_move_test()
 
 # Run on input trigger
 func _input(event):
 	player_jump(event, jump_speed)
-	player_move_test(event)
 
 # Test function that moves the players
-func player_move_test(input_event):
+func player_move_test():
 	# Only works if it's in Kinematic mode
-	if (input_event.is_action_pressed("ui_left")):
-		global_position.x -= 50
-	elif (input_event.is_action_pressed("ui_right")):
-		global_position.x += 50
-	elif (input_event.is_action_pressed("ui_up")):
-		global_position.y -= 50
-	elif (input_event.is_action_pressed("ui_down")):
-		global_position.y += 50
+	velocity = Vector2()
+	if Input.is_action_pressed('ui_right'):
+		velocity.x += 1
+	if Input.is_action_pressed('ui_left'):
+		velocity.x -= 1
+	if Input.is_action_pressed('ui_down'):
+		velocity.y += 1
+	if Input.is_action_pressed('ui_up'):
+		velocity.y -= 1
+	velocity = velocity.normalized() * 3
+	get_current_pos = get_global_position()
+	set_global_position(get_current_pos + velocity)
 
 # Player jumps away from the planet
 func player_jump(input_event, jump_speed):

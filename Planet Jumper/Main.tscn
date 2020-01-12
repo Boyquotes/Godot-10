@@ -13,11 +13,16 @@ extents = Vector2( 15.8262, 192.685 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 123.417 ],
+"_edit_vertical_guides_": [ 146.517 ]
+}
 
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 151.415, 103.61 )
+position = Vector2( 292.324, 408.234 )
+mode = 3
 rotation_speed = 4
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
@@ -26,7 +31,7 @@ target_planet = true
 
 [node name="Planet2" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 384.308, 226.812 )
+position = Vector2( 508.927, 124.184 )
 
 [node name="Orbiter" parent="Planet2" instance=ExtResource( 5 )]
 position = Vector2( -5.25854, 55.9137 )
@@ -34,7 +39,7 @@ rotation_velocity = 5.0
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 162.125, 140.635 )
+position = Vector2( 250.091, 260.367 )
 
 [node name="Planet4" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
@@ -62,11 +67,11 @@ position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 7 )]
-position = Vector2( -3.09512, 13.1543 )
-max_speed = 50.0
-max_force = 5.0
-max_see_ahead = 50.0
-max_avoid_force = 80.0
+position = Vector2( -4.88705, -3.25798 )
+mass = 10.0
+max_force = 0.35
+max_see_ahead = 100.0
+max_avoid_force = 500.0
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Walls"]

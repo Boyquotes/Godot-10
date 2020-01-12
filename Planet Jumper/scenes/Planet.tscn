@@ -13,7 +13,6 @@ radius = 29.6395
 radius = 188.189
 
 [node name="Planet" type="RigidBody2D"]
-position = Vector2( 694.433, 298.216 )
 collision_layer = 2
 collision_mask = 7
 physics_material_override = SubResource( 1 )
@@ -23,7 +22,9 @@ contact_monitor = true
 linear_damp = 0.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
 }
 
 [node name="Sprite" type="Sprite" parent="."]
