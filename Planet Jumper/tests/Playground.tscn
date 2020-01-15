@@ -9,7 +9,8 @@ radius = 15.0796
 [node name="Playground" type="Node"]
 
 [node name="PlayerTest" type="RigidBody2D" parent="."]
-position = Vector2( 50, 50 )
+editor/display_folded = true
+position = Vector2( 180.563, 126.907 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -21,3 +22,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTest"]
 shape = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

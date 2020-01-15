@@ -17,7 +17,7 @@ var steering = Vector2()
 var ahead_draw = Vector2(0, 0)
 var ahead2_draw = Vector2(0, 0)
 var avoid_draw = Vector2(0, 0)
-
+	
 func _process(delta):
 	update()
 	pass
@@ -25,6 +25,7 @@ func _process(delta):
 func _physics_process(delta):
 	steering = Vector2()
 	steering = steering + seek()
+	
 	steering = steering + collision_avoidance()
 
 	steering = steering.clamped(max_force)
@@ -70,8 +71,8 @@ func _integrate_forces(state):
 
 # Function to seek player
 func seek():
-	var player_loc = player.get_global_position()
-#	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
+#	var player_loc = player.get_global_position()
+	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
 	
 	# Get the desired velocity towards the player
 	var desired = (player_loc - get_global_position()).normalized()

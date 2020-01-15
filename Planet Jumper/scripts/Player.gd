@@ -20,7 +20,7 @@ func _physics_process(delta):
 	rotate_player(delta)
 	
 	# Test statements
-#	player_move_test()
+	player_move_test()
 
 # Run on input trigger
 func _input(event):
