@@ -22,19 +22,22 @@ func _process(delta):
 	
 # Run on physics process
 func _physics_process(delta):
-	rotate_player(delta)
+	pass
 	
 	# Test statements
 #	player_move_test()
 
 # Run on input trigger
 func _input(event):
-	player_jump(event, jump_speed)
+	pass
+#	player_jump(event, jump_speed)
 	
 func _integrate_forces(state):
-	if (test_true):
-		set_global_position(attached_planet.get_node("Position2D").get_global_position())
-		test_true = false
+	rotate_player(state.step)
+	player_jump(jump_speed)
+#	if (test_true):
+#		set_global_position(attached_planet.get_node("Position2D").get_global_position())
+#		test_true = false
 
 # Test function that moves the players
 func player_move_test():
@@ -58,8 +61,9 @@ func show_player():
 	pass
 
 # Player jumps away from the planet
-func player_jump(input_event, jump_speed):
-	if (input_event.is_action_pressed("ui_select") && is_attached):
+#func player_jump(input_event, jump_speed):
+func player_jump(jump_speed):
+	if (Input.is_action_pressed("ui_select") && is_attached):
 		var muzzle_position = attached_planet.get_node("Position2D").get_global_position()
 		var jumpDirection = (muzzle_position - attached_planet.get_global_position()).normalized()
 		

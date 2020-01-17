@@ -21,7 +21,7 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 85.449, 230.414 )
+position = Vector2( 363.334, 558.823 )
 mode = 3
 rotation_speed = 4
 
@@ -40,7 +40,7 @@ position = Vector2( 427.477, 150.532 )
 
 [node name="Planet3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 26.374, 176.954 )
+position = Vector2( 3.30848, 41.8559 )
 
 [node name="Planet4" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
@@ -68,10 +68,12 @@ position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 7 )]
-max_speed = 1.0
-max_force = 0.025
-max_see_ahead = 50.0
-max_avoid_force = 100.0
+position = Vector2( 260.311, 116.426 )
+max_speed = 100.0
+max_force = 2.0
+max_see_ahead = 100.0
+max_avoid_force = 200.0
+max_boost = 1000.0
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Walls"]

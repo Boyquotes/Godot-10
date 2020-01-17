@@ -10,10 +10,6 @@ export var jump_speed = 100.0
 
 var velocity = Vector2() # Test variable
 var get_current_pos = Vector2() # Test variable
-
-# Run on start up
-func _ready():
-	pass
 	
 # Run on physics process
 func _physics_process(delta):
@@ -55,7 +51,6 @@ func player_jump(input_event, jump_speed):
 		
 		is_attached = false
 		gravity_scale = 1.0
-		# attached_planet.get_child(2).set_collision_mask_bit(0, false)
 		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
 
 # 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
@@ -105,7 +100,6 @@ func _on_Player_body_entered(body):
 		gravity_scale = 0.0 # Prevents the player from being affected by gravity
 		
 		if (attached_planet):
-			# attached_planet.get_child(2).set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
 			attached_planet.get_node("Area2D").set_collision_mask_bit(0, true) # Make sure that previously attached planet's gravity does not affect the player while jumping
 		attached_planet = body # Where attached planet data is derived
 		is_attached = true # Simple indicator whether player has collided with a planet

@@ -4,9 +4,12 @@ export(float) var max_speed = 1.75
 export(float) var max_force = 0.25
 export(float) var max_see_ahead = 100
 export(float) var max_avoid_force = 100
+export(float) var max_boost = 20
 
 onready var player = get_parent().get_node("Player")
 var planet_list: Array
+var boost_on = false
+var boost_temp = 1.0
 
 # Vector initializations
 var ahead = Vector2()
@@ -19,26 +22,26 @@ var ahead2_draw = Vector2(0, 0)
 var avoid_draw = Vector2(0, 0)
 	
 func _process(delta):
-	update()
+#	update() # Used for updating drawing
 	pass
 
 func _physics_process(delta):
-	steering = Vector2()
-	steering = steering + seek()
-	
-	steering = steering + collision_avoidance()
-
-	steering = steering.clamped(max_force)
-	steering = steering / mass
-
-	var velocity = linear_velocity + steering
-	linear_velocity = velocity.clamped(max_speed)
-	global_position = global_position + linear_velocity
-	
-	# Rotation
-	look_at(ahead)
-	rotate(PI/2)
-	
+	# Legacy code that allows seeking movement using non-rigidbody properties
+#	steering = Vector2()
+#	steering = steering + seek()
+#
+#	steering = steering + collision_avoidance()
+#
+#	steering = steering.clamped(max_force)
+#	steering = steering / mass
+#
+#	var velocity = linear_velocity + steering
+#	linear_velocity = velocity.clamped(max_speed)
+#	global_position = global_position + linear_velocity
+#
+#	# Rotation
+#	look_at(ahead)
+#	rotate(PI/2)
 	pass
 
 func _ready():
@@ -51,23 +54,29 @@ func _ready():
 				planet_list.push_back(node_list[i])
 
 func _integrate_forces(state):
-#	steering = Vector2()
-#	steering = steering + seek()
-#	steering = steering + collision_avoidance()
-#
-#	steering = steering.clamped(max_force)
-#	steering = steering / mass
-#
-#	var velocity = linear_velocity + steering
-#	linear_velocity = velocity.clamped(max_speed)
-#	global_position = global_position + linear_velocity
-	
-#	set_global_position(get_global_position() + get_linear_velocity())
-#	apply_central_impulse(steering.clamped(max_speed))
-	
-#	apply_central_impulse(limit(seek() + collision_avoidance(), max_force)) # Impplement a seeking behavior while avoiding collision with planets.
-#	rotate(get_linear_velocity().angle() + PI/2) # Make sure the sprite points towards the player target
+	steering = seek() + boost()
+#	applied_force = boost()
+	apply_central_impulse(seek().clamped(max_force))
+	rotate(get_linear_velocity().angle() + PI/2) # Make sure the sprite points towards the player target
 	pass
+
+# Function to give boost to the Chaser when it comes near the player
+func boost():
+#	var player_loc = player.get_global_position()
+	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
+	var boost_velocity = get_linear_velocity().normalized()
+	var direction = get_global_position() + get_linear_velocity().normalized()
+	
+	if (distance(direction, get_global_position()) < 100):
+		boost_temp += 1
+		boost_velocity = Vector2(boost_velocity.x * boost_temp, boost_velocity.y * boost_temp)
+		return boost_velocity
+	elif (boost_temp > 1.0):
+		boost_temp -= 1
+		boost_velocity = Vector2(boost_velocity.x * boost_temp, boost_velocity.y * boost_temp)
+		return boost_velocity
+	boost_temp = 1
+	return Vector2()
 
 # Function to seek player
 func seek():
@@ -76,10 +85,10 @@ func seek():
 	
 	# Get the desired velocity towards the player
 	var desired = (player_loc - get_global_position()).normalized()
-	desired *= max_speed
+	desired *= (max_speed)
 	 
 	var steer = desired - get_linear_velocity()
-		
+	
 	return steer
 	
 # Function to avoid collisions with the planet
@@ -87,11 +96,6 @@ func collision_avoidance():
 	var dynamic_length = get_linear_velocity().length() / max_speed # Used for prevening collision when maneuvering. 
 	ahead = get_global_position() + get_linear_velocity().normalized() * max_see_ahead * dynamic_length
 	ahead2 = get_global_position() + get_linear_velocity().normalized() * max_see_ahead * 0.5 * dynamic_length
-	
-#	if (dynamic_length > 0.9):
-#		print ("dynamic_length: ", dynamic_length)
-#		print ("ahead w/ dynamic_length: ", ahead)
-#		print ("ahead w/out dynamic_length: ", get_global_position() + get_linear_velocity().normalized() * max_see_ahead) 
 	
 	ahead_draw = ahead # Test variable
 	ahead2_draw = ahead2 # Test variable
@@ -136,11 +140,6 @@ func lineIntersecsCircle(ahead, ahead2, obstacle):
 	
 	if (distance(obstacle_position, ahead) <= obstacle.radius || distance(obstacle_position, ahead2) <= obstacle.radius || enemy_position):
 		return true
-		
-	# Test statement
-#	if (enemy_position):
-#		print ("Hit")
-#		return true
 	
 # Euclidean distance formula
 func distance(a, b):
