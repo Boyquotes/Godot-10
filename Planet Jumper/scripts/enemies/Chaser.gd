@@ -42,6 +42,7 @@ func _physics_process(delta):
 #	# Rotation
 #	look_at(ahead)
 #	rotate(PI/2)
+#	look_at(get_global_mouse_position())
 	pass
 
 func _ready():
@@ -54,10 +55,14 @@ func _ready():
 				planet_list.push_back(node_list[i])
 
 func _integrate_forces(state):
-	steering = seek() + boost()
+	applied_force = Vector2(0, 15).rotated(rotation)
+	var rotation_dir = 0
+	print (rotation)
+#	steering = seek() + boost()
 #	applied_force = boost()
-	apply_central_impulse(seek().clamped(max_force))
-	rotate(get_linear_velocity().angle() + PI/2) # Make sure the sprite points towards the player target
+#	apply_central_impulse(seek().clamped(max_force))
+#	rotate(get_linear_velocity().angle() + PI/2) # Make sure the sprite points towards the player target
+	applied_torque = rotation_dir * 2000
 	pass
 
 # Function to give boost to the Chaser when it comes near the player
