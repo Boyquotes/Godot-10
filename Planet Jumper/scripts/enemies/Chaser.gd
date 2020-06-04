@@ -43,6 +43,16 @@ func _physics_process(delta):
 #	look_at(ahead)
 #	rotate(PI/2)
 #	look_at(get_global_mouse_position())
+	look_at(player.get_current_pos)
+	rotate(PI/2)
+	# Need to lerp direction perpendicular to player
+	# Find directional vector
+	var point_dir = (player.global_position - global_position).normalized()
+	# kinda worked!!! fuk!
+	linear_velocity.x = lerp(linear_velocity.x, 0, 0.1*(abs(point_dir.y)/1))
+	linear_velocity.y = lerp(linear_velocity.y, 0, 0.1*(abs(point_dir.x)/1))
+#	print (rotation)
+#	print(linear_velocity)
 	pass
 
 func _ready():
@@ -55,20 +65,21 @@ func _ready():
 				planet_list.push_back(node_list[i])
 
 func _integrate_forces(state):
-	applied_force = Vector2(0, 15).rotated(rotation)
+	applied_force = -Vector2(0, 50).rotated(rotation)
+	
 	var rotation_dir = 0
-	print (rotation)
 #	steering = seek() + boost()
 #	applied_force = boost()
 #	apply_central_impulse(seek().clamped(max_force))
 #	rotate(get_linear_velocity().angle() + PI/2) # Make sure the sprite points towards the player target
-	applied_torque = rotation_dir * 2000
+#	print (rotation)
+#	applied_torque = rotation_dir * 2000
 	pass
 
 # Function to give boost to the Chaser when it comes near the player
 func boost():
-#	var player_loc = player.get_global_position()
-	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
+	var player_loc = player.get_global_position()
+#	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
 	var boost_velocity = get_linear_velocity().normalized()
 	var direction = get_global_position() + get_linear_velocity().normalized()
 	
@@ -85,8 +96,8 @@ func boost():
 
 # Function to seek player
 func seek():
-#	var player_loc = player.get_global_position()
-	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
+	var player_loc = player.get_global_position()
+#	var player_loc = get_global_mouse_position() # Test variable to get mouse's position
 	
 	# Get the desired velocity towards the player
 	var desired = (player_loc - get_global_position()).normalized()

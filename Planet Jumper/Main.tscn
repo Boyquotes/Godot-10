@@ -21,7 +21,7 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 363.334, 558.823 )
+position = Vector2( 316.105, 565.413 )
 mode = 3
 rotation_speed = 4
 
@@ -33,7 +33,7 @@ target_planet = true
 position = Vector2( 102.981, 507.79 )
 
 [node name="Planet6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 448.047, 378.567 )
+position = Vector2( 454.637, 387.354 )
 
 [node name="Planet2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 427.477, 150.532 )
@@ -68,7 +68,7 @@ position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 7 )]
-position = Vector2( 260.311, 116.426 )
+position = Vector2( 259.213, 116.426 )
 max_speed = 100.0
 max_force = 2.0
 max_see_ahead = 100.0
