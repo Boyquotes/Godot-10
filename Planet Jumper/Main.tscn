@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Cannon.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8262, 192.685 )
@@ -21,12 +22,11 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 316.105, 565.413 )
-mode = 3
+position = Vector2( 100.827, 539.052 )
 rotation_speed = 4
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
-position = Vector2( 712.23, 492.635 )
+position = Vector2( 275.083, 341.062 )
 target_planet = true
 
 [node name="Planet5" parent="." instance=ExtResource( 4 )]
@@ -68,12 +68,16 @@ position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 7 )]
-position = Vector2( 259.213, 116.426 )
-max_speed = 100.0
-max_force = 2.0
-max_see_ahead = 100.0
-max_avoid_force = 200.0
-max_boost = 1000.0
+position = Vector2( 164.754, 176.836 )
+
+[node name="CollisionPolygon2D" parent="Chaser" index="1"]
+disabled = true
+
+[node name="Cannon" parent="." instance=ExtResource( 8 )]
+position = Vector2( 44.2578, 253.614 )
+rotation = -1.15465
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Walls"]
+
+[editable path="Chaser"]
