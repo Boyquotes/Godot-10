@@ -104,7 +104,8 @@ func _on_Player_body_entered(body):
 		attached_planet = body # Where attached planet data is derived
 		is_attached = true # Simple indicator whether player has collided with a planet
 	else:
-		# Hide the player and 
+		# Hide the player and set off the collision
+		print("hello")
 		hide()
 		emit_signal("win_condition", false)
 		$CollisionShape2D.set_deferred("disabled", true)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/Cannon.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemies/Cannon.gd" type="Script" id=1]
 [ext_resource path="res://assets/planets/cannons.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -9,13 +9,10 @@ friction = 0.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 34.7672
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 188.189
-
 [node name="Cannon" type="RigidBody2D"]
 position = Vector2( 173.864, 193.204 )
-collision_layer = 2
-collision_mask = 7
+collision_layer = 0
+mode = 1
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
@@ -29,7 +26,7 @@ __meta__ = {
 }
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -1.37938, 77.433 )
+position = Vector2( -1.37938, 41.3128 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -38,16 +35,3 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1.5733 )
 shape = SubResource( 2 )
-
-[node name="Area2D" type="Area2D" parent="."]
-space_override = 3
-gravity_point = true
-gravity_vec = Vector2( 0, 0 )
-gravity = 150.0
-collision_layer = 0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )

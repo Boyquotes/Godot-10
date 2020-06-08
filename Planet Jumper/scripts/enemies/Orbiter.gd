@@ -1,4 +1,4 @@
-extends "res://scripts/enemies/Enemy.gd"
+extends RigidBody2D
 
 # Variable initialization
 var parent_planet
@@ -37,4 +37,4 @@ func rotate_around(origin, player_pos, angle):
 func _on_Orbiter_body_entered(body):
 	# If it collides with the planet, destroy the enemy
 	if (body.get_collision_layer_bit(1)):
-		free_enemy()
+		queue_free()

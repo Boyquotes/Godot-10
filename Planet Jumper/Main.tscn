@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/Cannon.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8262, 192.685 )
@@ -22,7 +22,7 @@ __meta__ = {
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 100.827, 539.052 )
+position = Vector2( 117.302, 479.741 )
 rotation_speed = 4
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
@@ -30,7 +30,7 @@ position = Vector2( 275.083, 341.062 )
 target_planet = true
 
 [node name="Planet5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 102.981, 507.79 )
+position = Vector2( 88.7023, 496.806 )
 
 [node name="Planet6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 454.637, 387.354 )

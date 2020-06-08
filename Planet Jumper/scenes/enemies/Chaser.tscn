@@ -6,8 +6,6 @@
 [node name="Chaser" type="RigidBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
-max_see_ahead = 75.0
-max_avoid_force = 125.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.075, 0.075 )
