@@ -38,6 +38,5 @@ func get_button_pos():
 # Get the value of the button dragged depending on how far it is dragged from 0 - 1
 func get_value():
 	if (get_button_pos().length() > threshold):
-#		print ((get_button_pos()/boundary).x)
 		return (get_button_pos()/boundary).x
 	return 0

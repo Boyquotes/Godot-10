@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/JumpButton.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8262, 192.685 )
@@ -80,8 +81,13 @@ disabled = true
 [node name="Cannon" parent="." instance=ExtResource( 9 )]
 position = Vector2( 44.2578, 253.614 )
 rotation = -1.15465
+
+[node name="JumpButton" parent="." instance=ExtResource( 10 )]
+position = Vector2( 654.56, 459.28 )
+scale = Vector2( 0.342941, 0.328053 )
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 [connection signal="button_held" from="Joystick" to="Player" method="_on_Joystick_button_held"]
+[connection signal="pressed" from="JumpButton" to="Player" method="_on_JumpButton_pressed"]
 
 [editable path="Walls"]
 

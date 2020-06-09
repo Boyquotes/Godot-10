@@ -21,8 +21,8 @@ func _physics_process(delta):
 #	player_move_test()
 
 # Run on input trigger
-func _input(event):
-	player_jump(event, jump_speed)
+#func _input(event):
+#	player_jump(event, jump_speed)
 
 # Test function that moves the players
 func player_move_test():
@@ -41,8 +41,21 @@ func player_move_test():
 	set_global_position(get_current_pos + velocity)
 
 # Player jumps away from the planet
-func player_jump(input_event, jump_speed):
-	if (input_event.is_action_pressed("ui_select") && is_attached):
+func player_jump(jump_speed):
+#	if (input_event.is_action_pressed("ui_select") && is_attached):
+#		# Make the player jump directly above
+#		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
+#		set_linear_velocity(jumpDirection * jump_speed)
+#
+#		# Planet rebounds on the opposite direction based on planet's mass
+#		mass = 1.00
+#		attached_planet.linear_velocity = (attached_planet.get_linear_velocity()*attached_planet.mass - get_linear_velocity()*mass) / attached_planet.mass
+#
+#		is_attached = false
+#		gravity_scale = 1.0
+#		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
+		
+	if (is_attached):
 		# Make the player jump directly above
 		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
 		set_linear_velocity(jumpDirection * jump_speed)
@@ -127,3 +140,7 @@ func _on_VisibilityEnabler2D_screen_exited():
 # Whenever the button is pressed, move the Player
 func _on_Joystick_button_held(value):
 	rotation_dir = value
+
+# If JumpButton is pressed, the Player will jump!
+func _on_JumpButton_pressed():
+	player_jump(jump_speed)
