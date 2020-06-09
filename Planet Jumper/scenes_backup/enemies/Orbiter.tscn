@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/enemies/Orbiter.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/orbiter.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.60109
+height = 9.43414
+
+[node name="Orbiter" type="RigidBody2D"]
+position = Vector2( 28.0141, 23.4148 )
+collision_layer = 4
+collision_mask = 3
+mode = 2
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.025, 0.025 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_Orbiter_body_entered"]

@@ -42,6 +42,7 @@ func player_move_test():
 
 # Player jumps away from the planet
 func player_jump(jump_speed):
+	# Old code. Used to be player_jump(event, jump_speed).
 #	if (input_event.is_action_pressed("ui_select") && is_attached):
 #		# Make the player jump directly above
 #		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()

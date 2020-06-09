@@ -25,9 +25,15 @@ func _physics_process(delta):
 # Fire the bullet once the Timer sends out the "timeout" signal.
 func _on_timer_timeout():
 	# Create an instance of the bullet and position the bullet at Position2D of the Cannon
-	if (get_tree().get_current_scene().get_name() == "Main"):
+#	if (get_tree().get_current_scene().get_name() == "Main"):
+#		var bullet_inst = bullet.instance()
+#		get_node("/root/Main").add_child(bullet_inst)
+#		bullet_inst.set_global_position($Position2D.get_global_position())
+	
+	# Create an instance of the bullet and position the bullet at Position2D of the Cannon
+	if (get_tree().get_current_scene().get_name() != "Cannon"):
 		var bullet_inst = bullet.instance()
-		get_node("/root/Main").add_child(bullet_inst)
+		get_parent().add_child(bullet_inst) # get_parent() should always be the Level name
 		bullet_inst.set_global_position($Position2D.get_global_position())
 
 # Test function for drawing the collision area

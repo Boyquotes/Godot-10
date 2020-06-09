@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/enemies/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/shapeship1.png" type="Texture" id=2]
+
+[node name="Bullet" type="RigidBody2D"]
+position = Vector2( 598.262, 321.486 )
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.1, 0.1 )
+polygon = PoolVector2Array( 2.84436, -180.836, 196.588, 202.392, 0.715332, 142.779, -190.899, 191.747 )
+disabled = true
