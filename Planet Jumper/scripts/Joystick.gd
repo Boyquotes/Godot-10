@@ -13,8 +13,8 @@ func _process(delta):
 		# How far the button is from the center. Center - Position of the Button.
 		var pos_difference = (Vector2(0, 0) - Vector2(radius, radius)) - $JoystickButton.position
 		$JoystickButton.position += pos_difference * return_accel * delta
-	else:
-		emit_signal("button_held", get_value())
+
+	emit_signal("button_held", get_value())
 
 func _input(event):
 	if (event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed())):

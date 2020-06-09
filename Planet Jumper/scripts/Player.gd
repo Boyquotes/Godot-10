@@ -3,22 +3,22 @@ extends RigidBody2D
 signal win_condition # When the player wins or loses either by an enemy or reaching the target planet
 
 # Variable initializations
-var is_attached = false
-var attached_planet
-export var rotation_speed = 0.02
-export var jump_speed = 100.0
+onready var is_attached = false
+onready var attached_planet
+onready var rotation_dir = 0
+export(float) var rotation_speed = 0.02
+export(float) var jump_speed = 100.0
 
 var velocity = Vector2() # Test variable
 var get_current_pos = Vector2() # Test variable
 	
 # Run on physics process
 func _physics_process(delta):
-#	rotate_player(delta) # Maybe obsolete due to movement via Joystick
-	print (delta)
+	orient_and_match_vel()
+	rotate_player()
 	
 	# Test statements
 #	player_move_test()
-	pass
 
 # Run on input trigger
 func _input(event):
@@ -55,12 +55,23 @@ func player_jump(input_event, jump_speed):
 		gravity_scale = 1.0
 		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
 
-# 1. Move the player around the planet. 2. Make sure the player is oriented correctly while rotating. 3. Let the velocity of player match the planet when position is switched due to rotation
-func rotate_player(delta):
+# 1. Make sure the player is oriented correctly while rotating. 2. Let the velocity of player match the planet when position is switched due to rotation
+func orient_and_match_vel():
 	if (is_attached):
 		var planet_position = attached_planet.get_global_position()
 		var planet_velocity = attached_planet.get_linear_velocity()
+		
+		look_at(planet_position)
+		rotate(-PI/2)
+	
+		# Set velocity equal to attached planet
+		set_linear_velocity(planet_velocity)
 
+# Move the player around the planet. 
+func rotate_player():
+	if (is_attached):
+		var planet_position = attached_planet.get_global_position()
+		
 		# Keyboard input
 #		if (Input.is_action_pressed("ui_left")):
 #			# Rotate counterclockwise
@@ -68,17 +79,10 @@ func rotate_player(delta):
 #		if (Input.is_action_pressed("ui_right")):
 #			# Rotate clockwise
 #			rotate_around(planet_position, get_global_position(), delta*rotation_speed)
-		
-		# Input from Joystick
-		rotate_around(planet_position, get_global_position(), delta*rotation_speed)
-		rotate_around(planet_position, get_global_position(), delta*rotation_speed)
-		
-		# Reorient the player
-		look_at(planet_position)
-		rotate(-PI/2)
 
-		# Set velocity equal to attached planet
-		set_linear_velocity(planet_velocity)
+		# rotation_dir is updated by _on_Joystick_button_held function
+		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
+		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
 
 # Calculation for rotating the object around origin at given angle
 func rotate_around(origin, player_pos, angle):
@@ -122,5 +126,4 @@ func _on_VisibilityEnabler2D_screen_exited():
 
 # Whenever the button is pressed, move the Player
 func _on_Joystick_button_held(value):
-	print (value)
-	rotate_player(value)
+	rotation_dir = value

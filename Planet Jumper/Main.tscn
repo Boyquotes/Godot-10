@@ -27,7 +27,7 @@ position = Vector2( 117.302, 479.741 )
 
 [node name="Joystick" parent="." instance=ExtResource( 4 )]
 position = Vector2( 870.532, 466.773 )
-scale = Vector2( 0.504173, 0.512628 )
+scale = Vector2( 0.502364, 0.535315 )
 
 [node name="Planet" parent="." instance=ExtResource( 5 )]
 position = Vector2( 275.083, 341.062 )
@@ -82,8 +82,6 @@ position = Vector2( 44.2578, 253.614 )
 rotation = -1.15465
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 [connection signal="button_held" from="Joystick" to="Player" method="_on_Joystick_button_held"]
-
-[editable path="Joystick"]
 
 [editable path="Walls"]
 
