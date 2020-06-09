@@ -18,15 +18,17 @@ func _ready():
 
 func _physics_process(delta):
 	# Make the Cannon face the Player
-	look_at(player.get_global_position())
-	rotate(-PI/2)
+	if (player):
+		look_at(player.get_global_position())
+		rotate(-PI/2)
 	
 # Fire the bullet once the Timer sends out the "timeout" signal.
 func _on_timer_timeout():
 	# Create an instance of the bullet and position the bullet at Position2D of the Cannon
-	var bullet_inst = bullet.instance()
-	get_node("/root/Main").add_child(bullet_inst)
-	bullet_inst.set_global_position($Position2D.get_global_position())
+	if (get_tree().get_current_scene().get_name() == "Main"):
+		var bullet_inst = bullet.instance()
+		get_node("/root/Main").add_child(bullet_inst)
+		bullet_inst.set_global_position($Position2D.get_global_position())
 
 # Test function for drawing the collision area
 func _draw():

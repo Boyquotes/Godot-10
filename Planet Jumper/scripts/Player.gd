@@ -5,7 +5,7 @@ signal win_condition # When the player wins or loses either by an enemy or reach
 # Variable initializations
 var is_attached = false
 var attached_planet
-export var rotation_speed = 2
+export var rotation_speed = 0.02
 export var jump_speed = 100.0
 
 var velocity = Vector2() # Test variable
@@ -13,10 +13,12 @@ var get_current_pos = Vector2() # Test variable
 	
 # Run on physics process
 func _physics_process(delta):
-	rotate_player(delta)
+#	rotate_player(delta) # Maybe obsolete due to movement via Joystick
+	print (delta)
 	
 	# Test statements
 #	player_move_test()
+	pass
 
 # Run on input trigger
 func _input(event):
@@ -60,12 +62,16 @@ func rotate_player(delta):
 		var planet_velocity = attached_planet.get_linear_velocity()
 
 		# Keyboard input
-		if (Input.is_action_pressed("ui_left")):
-			# Rotate counterclockwise
-			rotate_around(planet_position, get_global_position(), -delta*rotation_speed)
-		if (Input.is_action_pressed("ui_right")):
-			# Rotate clockwise
-			rotate_around(planet_position, get_global_position(), delta*rotation_speed)
+#		if (Input.is_action_pressed("ui_left")):
+#			# Rotate counterclockwise
+#			rotate_around(planet_position, get_global_position(), -delta*rotation_speed)
+#		if (Input.is_action_pressed("ui_right")):
+#			# Rotate clockwise
+#			rotate_around(planet_position, get_global_position(), delta*rotation_speed)
+		
+		# Input from Joystick
+		rotate_around(planet_position, get_global_position(), delta*rotation_speed)
+		rotate_around(planet_position, get_global_position(), delta*rotation_speed)
 		
 		# Reorient the player
 		look_at(planet_position)
@@ -113,3 +119,8 @@ func _on_Player_body_entered(body):
 # If the player is not visible then make it a game over
 func _on_VisibilityEnabler2D_screen_exited():
 	emit_signal("win_condition", false)
+
+# Whenever the button is pressed, move the Player
+func _on_Joystick_button_held(value):
+	print (value)
+	rotate_player(value)
