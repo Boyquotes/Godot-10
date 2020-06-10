@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/main_menu/title.png" type="Texture" id=1]
 [ext_resource path="res://assets/main_menu/label_continue.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/main_menu/label_options.png" type="Texture" id=4]
 [ext_resource path="res://assets/main_menu/version.png" type="Texture" id=5]
 [ext_resource path="res://assets/main_menu/characters.png" type="Texture" id=6]
+[ext_resource path="res://scripts/MainMenu.gd" type="Script" id=7]
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
@@ -17,6 +18,10 @@ custom_constants/margin_right = 0
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1074.0
@@ -70,3 +75,4 @@ margin_right = 533.0
 margin_bottom = 469.0
 texture = ExtResource( 6 )
 stretch_mode = 1
+[connection signal="gui_input" from="HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_Options_gui_input"]

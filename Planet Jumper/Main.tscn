@@ -42,11 +42,9 @@ target_planet = true
 position = Vector2( 395.799, 82.8569 )
 
 [node name="Planet3" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 56.5846, 44.0157 )
 
 [node name="Planet4" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 744.268, 208.205 )
 
 [node name="Orbiter" parent="Planet4" instance=ExtResource( 7 )]
@@ -60,7 +58,6 @@ position = Vector2( 119.502, 327.789 )
 position = Vector2( 510.186, 390.217 )
 
 [node name="Walls" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
 position = Vector2( 599.86, 434.797 )
 
 [node name="Sprite" parent="Walls" index="0"]
@@ -72,12 +69,10 @@ rotation = 0.785398
 shape = SubResource( 1 )
 
 [node name="Walls2" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
 position = Vector2( 620.736, 138.263 )
 scale = Vector2( 1, 5 )
 
 [node name="Chaser" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
 position = Vector2( 322.423, -126.982 )
 
 [node name="CollisionPolygon2D" parent="Chaser" index="1"]
