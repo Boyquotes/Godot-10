@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -6,10 +6,7 @@
 [ext_resource path="res://scenes/JumpButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8262, 192.685 )
@@ -28,40 +25,31 @@ position = Vector2( 107.929, 502.54 )
 scale = Vector2( 0.502364, 0.535315 )
 
 [node name="JumpButton" parent="." instance=ExtResource( 4 )]
-position = Vector2( 761.076, 518.265 )
+position = Vector2( 879.474, 511.89 )
 scale = Vector2( 0.342941, 0.328053 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 64.0258, 65.7709 )
 
 [node name="Planet" parent="." instance=ExtResource( 6 )]
-position = Vector2( 838.789, 500.919 )
+editor/display_folded = true
+position = Vector2( 340.606, 295.999 )
 target_planet = true
 
+[node name="Sprite" parent="Planet" index="0"]
+modulate = Color( 1, 0, 0, 1 )
+
 [node name="Planet2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 395.799, 82.8569 )
+position = Vector2( 390.334, 46.4267 )
 
 [node name="Planet3" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 56.5846, 44.0157 )
 
-[node name="Planet4" parent="." instance=ExtResource( 6 )]
+[node name="Walls" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
-position = Vector2( 744.268, 208.205 )
-
-[node name="Orbiter" parent="Planet4" instance=ExtResource( 7 )]
-position = Vector2( -112.814, 5.6178 )
-rotation_velocity = 10.0
-
-[node name="Planet5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 119.502, 327.789 )
-
-[node name="Planet6" parent="." instance=ExtResource( 6 )]
-position = Vector2( 510.186, 390.217 )
-
-[node name="Walls" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
-position = Vector2( 599.86, 434.797 )
+position = Vector2( 187.288, 302.738 )
+rotation = 2.36853
 
 [node name="Sprite" parent="Walls" index="0"]
 rotation = 0.785398
@@ -71,25 +59,15 @@ scale = Vector2( 0.5, 6 )
 rotation = 0.785398
 shape = SubResource( 1 )
 
-[node name="Walls2" parent="." instance=ExtResource( 8 )]
+[node name="Walls2" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
-position = Vector2( 620.736, 138.263 )
+position = Vector2( 349.331, 449.741 )
+rotation = 1.55064
 scale = Vector2( 1, 5 )
-
-[node name="Chaser" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
-position = Vector2( 322.423, -126.982 )
-
-[node name="CollisionPolygon2D" parent="Chaser" index="1"]
-disabled = true
-
-[node name="Cannon" parent="." instance=ExtResource( 10 )]
-position = Vector2( 165.929, 216.177 )
-rotation = -1.15465
 [connection signal="button_held" from="Joystick" to="Player" method="_on_Joystick_button_held"]
 [connection signal="pressed" from="JumpButton" to="Player" method="_on_JumpButton_pressed"]
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
-[editable path="Walls"]
+[editable path="Planet"]
 
-[editable path="Chaser"]
+[editable path="Walls"]
