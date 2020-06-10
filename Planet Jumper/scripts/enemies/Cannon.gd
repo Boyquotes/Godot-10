@@ -1,6 +1,6 @@
 extends RigidBody2D # Should be StaticBody but will keep it as is for now.
 
-export(float) var delay = 2
+export(float) var delay = 3
 onready var bullet = preload("res://scenes/enemies/Bullet.tscn")
 onready var player = get_parent().get_node("Player")
 

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export(float) var bullet_speed = 1
+export(float) var bullet_speed = 5
 onready var player = get_parent().get_node("Player")
 
 var inst_flag = false
@@ -21,6 +21,8 @@ func _physics_process(delta):
 
 	# Move the bullet to the player
 	set_global_position(get_global_position() + bullet_speed * direction)
-	
-func _on_VisibilityEnabler2D_screen_exited():
+
+# Free the node once it's out of the screen
+func _on_VisibilityNotifier2D_screen_exited():
+	print ("Worked")
 	queue_free()

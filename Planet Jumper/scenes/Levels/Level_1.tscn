@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -7,9 +7,6 @@
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.8262, 192.685 )
 
 [node name="Level_1" type="Node"]
 script = ExtResource( 1 )
@@ -47,17 +44,9 @@ editor/display_folded = true
 position = Vector2( 56.5846, 44.0157 )
 
 [node name="Walls" parent="." instance=ExtResource( 7 )]
-editor/display_folded = true
 position = Vector2( 187.288, 302.738 )
 rotation = 2.36853
-
-[node name="Sprite" parent="Walls" index="0"]
-rotation = 0.785398
-scale = Vector2( 0.5, 6 )
-
-[node name="CollisionShape2D" parent="Walls" index="1"]
-rotation = 0.785398
-shape = SubResource( 1 )
+scale = Vector2( 10.4846, 1 )
 
 [node name="Walls2" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
@@ -69,5 +58,3 @@ scale = Vector2( 1, 5 )
 [connection signal="win_condition" from="Player" to="." method="_on_Player_win_condition"]
 
 [editable path="Planet"]
-
-[editable path="Walls"]
