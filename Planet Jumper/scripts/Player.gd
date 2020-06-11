@@ -87,16 +87,16 @@ func rotate_player():
 		var planet_position = attached_planet.get_global_position()
 		
 		# Keyboard input
-#		if (Input.is_action_pressed("ui_left")):
-#			# Rotate counterclockwise
-#			rotate_around(planet_position, get_global_position(), -delta*rotation_speed)
-#		if (Input.is_action_pressed("ui_right")):
-#			# Rotate clockwise
-#			rotate_around(planet_position, get_global_position(), delta*rotation_speed)
+		if (Input.is_action_pressed("ui_left")):
+			# Rotate counterclockwise
+			rotate_around(planet_position, get_global_position(), -1*rotation_speed)
+		if (Input.is_action_pressed("ui_right")):
+			# Rotate clockwise
+			rotate_around(planet_position, get_global_position(), 1*rotation_speed)
 
 		# rotation_dir is updated by _on_Joystick_button_held function
-		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
-		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
+#		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
+#		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
 
 # Calculation for rotating the object around origin at given angle
 func rotate_around(origin, player_pos, angle):

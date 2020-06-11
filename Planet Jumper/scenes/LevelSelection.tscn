@@ -1,4 +1,13 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/Button.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Levels/Level_5.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/controller/icon (37).png" type="Texture" id=3]
+[ext_resource path="res://scenes/Levels/Level_10.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Levels/Level_1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Levels/Level_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Levels/Level_4.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Levels/Level_3.tscn" type="PackedScene" id=8]
 
 [node name="LevelSelection" type="Control"]
 anchor_right = 1.0
@@ -6,3 +15,97 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="GridContainer"]
+margin_right = 339.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 5 )
+
+[node name="Button2" type="Button" parent="GridContainer"]
+margin_left = 343.0
+margin_right = 682.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 6 )
+
+[node name="Button3" type="Button" parent="GridContainer"]
+margin_left = 686.0
+margin_right = 1025.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 8 )
+
+[node name="Button4" type="Button" parent="GridContainer"]
+margin_top = 302.0
+margin_right = 339.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 7 )
+
+[node name="Button5" type="Button" parent="GridContainer"]
+margin_left = 343.0
+margin_top = 302.0
+margin_right = 682.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 2 )
+
+[node name="Button6" type="Button" parent="GridContainer"]
+margin_left = 686.0
+margin_top = 302.0
+margin_right = 1025.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level = ExtResource( 4 )
+[connection signal="pressed" from="GridContainer/Button" to="GridContainer/Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="GridContainer/Button2" to="GridContainer/Button2" method="_on_Button_pressed"]
+[connection signal="pressed" from="GridContainer/Button3" to="GridContainer/Button3" method="_on_Button_pressed"]
+[connection signal="pressed" from="GridContainer/Button4" to="GridContainer/Button4" method="_on_Button_pressed"]
+[connection signal="pressed" from="GridContainer/Button5" to="GridContainer/Button5" method="_on_Button_pressed"]
+[connection signal="pressed" from="GridContainer/Button6" to="GridContainer/Button6" method="_on_Button_pressed"]

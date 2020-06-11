@@ -1,12 +1,12 @@
 extends RigidBody2D
 
 # Variable initialization
-var parent_planet
+onready var parent_planet = get_parent()
 export(float) var rotation_velocity = 1
 
 # Run on start up
-func _ready():
-	parent_planet = get_parent()
+#func _ready():
+#	parent_planet = get_parent()
 
 # Run on every physics process
 func _physics_process(delta):

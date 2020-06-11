@@ -30,7 +30,6 @@ scale = Vector2( 0.342941, 0.328053 )
 position = Vector2( 64.0258, 65.7709 )
 
 [node name="Planet" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 714.016, 265.944 )
 target_planet = true
 
@@ -38,11 +37,9 @@ target_planet = true
 modulate = Color( 0.172549, 0.121569, 0.121569, 1 )
 
 [node name="Planet3" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 42.0125, 37.6404 )
 
 [node name="Planet4" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 383.546, 94.1072 )
 
 [node name="Orbiter" parent="Planet4" instance=ExtResource( 7 )]
@@ -50,7 +47,6 @@ position = Vector2( 58.0691, 48.0052 )
 rotation_velocity = 20.0
 
 [node name="Planet5" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 145.003, 315.949 )
 z_index = -1
 
@@ -59,13 +55,11 @@ position = Vector2( 24.1782, -67.5775 )
 rotation_velocity = -4.0
 
 [node name="Walls" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
 position = Vector2( 343.937, 339.168 )
 rotation = 2.16273
 scale = Vector2( 13.08, 1 )
 
 [node name="Walls2" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
 position = Vector2( 239.13, 87.2604 )
 rotation = 0.00543934
 scale = Vector2( 1, 5 )
