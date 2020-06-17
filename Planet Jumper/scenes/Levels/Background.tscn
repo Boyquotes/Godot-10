@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/levels/BackgroundScreen.png" type="Texture" id=1]
+
+
+
+
+
+[node name="Background" type="CanvasLayer"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 516.264, 299.568 )
+rotation = 1.5708
+scale = Vector2( 1.34882, 1.45583 )
+texture = ExtResource( 1 )

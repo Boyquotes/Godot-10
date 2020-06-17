@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/enemies/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemies/shapeship1.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/Bullet.png" type="Texture" id=2]
+
+
 
 [node name="Bullet" type="RigidBody2D"]
 position = Vector2( 598.262, 321.486 )

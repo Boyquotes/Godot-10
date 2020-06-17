@@ -16,13 +16,10 @@ var get_current_pos = Vector2() # Test variable
 func _physics_process(delta):
 	orient_and_match_vel()
 	rotate_player()
+	player_jump(jump_speed) # Legacy statement. Comment it out when running actual code.
 	
 	# Test statements
 #	player_move_test()
-
-# Run on input trigger
-#func _input(event):
-#	player_jump(event, jump_speed)
 
 # Test function that moves the players
 func player_move_test():
@@ -43,7 +40,20 @@ func player_move_test():
 # Player jumps away from the planet
 func player_jump(jump_speed):
 	# Old code. Used to be player_jump(event, jump_speed).
-#	if (input_event.is_action_pressed("ui_select") && is_attached):
+	if (Input.is_action_pressed("ui_select") && is_attached):
+		# Make the player jump directly above
+		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
+		set_linear_velocity(jumpDirection * jump_speed)
+
+		# Planet rebounds on the opposite direction based on planet's mass
+		mass = 1.00
+		attached_planet.linear_velocity = (attached_planet.get_linear_velocity()*attached_planet.mass - get_linear_velocity()*mass) / attached_planet.mass
+
+		is_attached = false
+		gravity_scale = 1.0
+		attached_planet.get_node("Gravity").set_collision_mask_bit(0, false)
+		
+#	if (is_attached):
 #		# Make the player jump directly above
 #		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
 #		set_linear_velocity(jumpDirection * jump_speed)
@@ -55,19 +65,10 @@ func player_jump(jump_speed):
 #		is_attached = false
 #		gravity_scale = 1.0
 #		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
-		
-	if (is_attached):
-		# Make the player jump directly above
-		var jumpDirection = (get_global_position() - attached_planet.get_global_position()).normalized()
-		set_linear_velocity(jumpDirection * jump_speed)
-		
-		# Planet rebounds on the opposite direction based on planet's mass
-		mass = 1.00
-		attached_planet.linear_velocity = (attached_planet.get_linear_velocity()*attached_planet.mass - get_linear_velocity()*mass) / attached_planet.mass
-		
-		is_attached = false
-		gravity_scale = 1.0
-		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
+
+		# Animation control
+		$AnimatedSprite.animation = "jump"
+		$AnimatedSprite.play()
 
 # 1. Make sure the player is oriented correctly while rotating. 2. Let the velocity of player match the planet when position is switched due to rotation
 func orient_and_match_vel():
@@ -87,16 +88,32 @@ func rotate_player():
 		var planet_position = attached_planet.get_global_position()
 		
 		# Keyboard input
+		$AnimatedSprite.animation = "walk"
 		if (Input.is_action_pressed("ui_left")):
 			# Rotate counterclockwise
 			rotate_around(planet_position, get_global_position(), -1*rotation_speed)
-		if (Input.is_action_pressed("ui_right")):
+			$AnimatedSprite.flip_h = true
+		elif (Input.is_action_pressed("ui_right")):
 			# Rotate clockwise
 			rotate_around(planet_position, get_global_position(), 1*rotation_speed)
+			$AnimatedSprite.flip_h = false
+		else:
+			$AnimatedSprite.animation = "idle"
+		$AnimatedSprite.play()
 
 		# rotation_dir is updated by _on_Joystick_button_held function
 #		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
 #		rotate_around(planet_position, get_global_position(), rotation_dir*rotation_speed)
+#
+#		# Animation control
+#		$AnimatedSprite.animation = "walk"
+#		if (rotation_dir < 0):
+#			$AnimatedSprite.flip_h = true
+#		elif (rotation_dir > 0):
+#			$AnimatedSprite.flip_h = false
+#		else:
+#			$AnimatedSprite.animation = "idle"
+#		$AnimatedSprite.play()
 
 # Calculation for rotating the object around origin at given angle
 func rotate_around(origin, player_pos, angle):
@@ -129,7 +146,6 @@ func _on_Player_body_entered(body):
 		is_attached = true # Simple indicator whether player has collided with a planet
 	else:
 		# Hide the player and set off the collision
-		print("hello")
 		hide()
 		emit_signal("win_condition", false)
 		$CollisionShape2D.set_deferred("disabled", true)
@@ -145,3 +161,8 @@ func _on_Joystick_button_held(value):
 # If JumpButton is pressed, the Player will jump!
 func _on_JumpButton_pressed():
 	player_jump(jump_speed)
+	
+# TODO
+# Logic for creating a list of trajectory circles for predictive pathing
+#func create_trajectory(init_velocity, init_position, grav_positions, grav_magnitude):
+

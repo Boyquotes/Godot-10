@@ -4,13 +4,9 @@ extends RigidBody2D
 onready var parent_planet = get_parent()
 export(float) var rotation_velocity = 1
 
-# Run on start up
-#func _ready():
-#	parent_planet = get_parent()
-
-# Run on every physics process
-func _physics_process(delta):
-	rotate_enemy()
+# Run on every process
+func _process(delta):
+	rotate_enemy() # _physics_process did not update fast enough to match the velocity of the planet
 
 # Rotate enemy in a rand direction (counter or clockwise)
 func rotate_enemy():
