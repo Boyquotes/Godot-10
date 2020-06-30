@@ -36,13 +36,13 @@ func enable_buttons():
 # Move the options menu
 func show_options_menu():
 	if (option_flag):
-		if (options_menu.position.y < 100):
-			options_menu.position.y += 1
+		if (options_menu.rect_position.y < 100):
+			options_menu.rect_position.y += 25
 
 # Move back the options menu when it's pressed, reenable the buttons, and change the alpha setting of the Main UI
 func _on_BackButton_pressed():
 	if (option_flag):
 		option_flag = false
-		options_menu.position.y = -500
+		options_menu.rect_position.y = -500
 		enable_buttons()
 		set_modulate(Color(1, 1, 1, 1))

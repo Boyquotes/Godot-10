@@ -161,7 +161,6 @@ __meta__ = {
 }
 
 [node name="OptionsMenu" type="Panel" parent="."]
-modulate = Color( 0.6, 0.678431, 0.796078, 0.615686 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
