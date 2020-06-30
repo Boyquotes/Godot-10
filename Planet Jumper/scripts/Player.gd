@@ -51,7 +51,7 @@ func player_jump(jump_speed):
 
 		is_attached = false
 		gravity_scale = 1.0
-		attached_planet.get_node("Gravity").set_collision_mask_bit(0, false)
+		attached_planet.get_node("Area2D").set_collision_mask_bit(0, false)
 		
 #	if (is_attached):
 #		# Make the player jump directly above

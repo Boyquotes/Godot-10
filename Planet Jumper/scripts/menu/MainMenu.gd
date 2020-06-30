@@ -7,19 +7,15 @@ func _physics_process(delta):
 	show_options_menu() # Enabled when option_flag is set to true
 
 # When Levels is touched
-func _on_Levels_gui_input(event):
-	if (event is InputEventScreenTouch and event.is_pressed()):
-		print ("Pressed")
-		get_tree().change_scene("res://scenes/menu/LevelSelection.tscn")
+func _on_Levels_pressed():
+	get_tree().change_scene("res://scenes/menu/LevelSelection.tscn")
 
 # Enable the option flag to move and disable
-func _on_Options_gui_input(event):
-	if (event is InputEventScreenTouch and event.is_pressed()):
-		option_flag = true
-		disable_buttons()
-		set_modulate(Color(1, 1, 1, 0.5))
-		
-# Disable buttons
+func _on_Options_pressed():
+	option_flag = true
+	disable_buttons()
+	set_modulate(Color(1, 1, 1, 0.5))
+	
 func disable_buttons():
 	var button_container = $VBoxContainer/HBoxContainer2/VBoxContainer
 	button_container.get_node("CenterContainer/Play").disabled = true
@@ -46,3 +42,11 @@ func _on_BackButton_pressed():
 		options_menu.rect_position.y = -500
 		enable_buttons()
 		set_modulate(Color(1, 1, 1, 1))
+
+# Switch the sound to on/off 
+func _on_Sound_pressed():
+	var sound_label = options_menu.get_node("MarginContainer/VBoxContainer/CenterContainer/Sound/SoundLabel")
+	if (sound_label.text == "Sound On"):
+		sound_label.text = "Sound Off"
+	else:
+		sound_label.text = "Sound On"

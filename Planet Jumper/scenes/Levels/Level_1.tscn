@@ -27,6 +27,7 @@ func _draw():
 "
 
 [node name="Level_1" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 123.417 ],

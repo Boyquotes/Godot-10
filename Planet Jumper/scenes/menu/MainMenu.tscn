@@ -243,6 +243,7 @@ margin_top = 10.0
 margin_right = 72.0
 margin_bottom = 66.0
 icon = ExtResource( 5 )
-[connection signal="gui_input" from="MainUI/VBoxContainer/HBoxContainer2/VBoxContainer/CenterContainer2/Levels" to="MainUI" method="_on_Levels_gui_input"]
-[connection signal="gui_input" from="MainUI/VBoxContainer/HBoxContainer2/VBoxContainer/CenterContainer3/Options" to="MainUI" method="_on_Options_gui_input"]
+[connection signal="pressed" from="MainUI/VBoxContainer/HBoxContainer2/VBoxContainer/CenterContainer2/Levels" to="MainUI" method="_on_Levels_pressed"]
+[connection signal="pressed" from="MainUI/VBoxContainer/HBoxContainer2/VBoxContainer/CenterContainer3/Options" to="MainUI" method="_on_Options_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/VBoxContainer/CenterContainer/Sound" to="MainUI" method="_on_Sound_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BackButton" to="MainUI" method="_on_BackButton_pressed"]
