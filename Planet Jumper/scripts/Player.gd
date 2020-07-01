@@ -152,7 +152,8 @@ func _on_Player_body_entered(body):
 	
 # If the player is not visible then make it a game over
 func _on_VisibilityEnabler2D_screen_exited():
-	emit_signal("win_condition", false)
+	if (is_attached == false):
+		emit_signal("win_condition", false)
 
 # Whenever the button is pressed, move the Player
 func _on_Joystick_button_held(value):

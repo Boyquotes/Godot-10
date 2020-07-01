@@ -3,11 +3,6 @@
 [ext_resource path="res://assets/hud/ButtonOn.png" type="Texture" id=1]
 [ext_resource path="res://assets/hud/ButtonOff.png" type="Texture" id=2]
 
-
-
-
-
-
 [node name="JumpButton" type="TouchScreenButton"]
 normal = ExtResource( 1 )
 pressed = ExtResource( 2 )
