@@ -1,17 +1,19 @@
 extends RigidBody2D
 
 # Variable initialization
-onready var parent_planet = get_parent()
 export(float) var rotation_velocity = 1
+onready var pos_different = get_global_position() - get_parent().get_global_position()
 
 # Run on every process
-func _process(delta):
-	rotate_enemy() # _physics_process did not update fast enough to match the velocity of the planet
+func _physics_process(delta):
+	rotate_enemy()
 
 # Rotate enemy in a rand direction (counter or clockwise)
 func rotate_enemy():
-	set_linear_velocity(parent_planet.get_linear_velocity()) # Set it so that the enemy follows the planet
-	rotate_around(parent_planet.get_global_position(), get_global_position(), rotation_velocity/1000.0)
+#	set_linear_velocity(parent_planet.get_linear_velocity()) # Set it so that the enemy follows the planet
+	set_global_position(get_parent().get_global_position() + pos_different) # Set the position of Orbiter
+	rotate_around(get_parent().get_global_position(), get_global_position(), rotation_velocity/1000.0) # Rotate the Orbiter
+	pos_different = get_global_position() - get_parent().get_global_position() # Recalculate the positional difference
 
 # Func to rotate around an origin
 func rotate_around(origin, player_pos, angle):

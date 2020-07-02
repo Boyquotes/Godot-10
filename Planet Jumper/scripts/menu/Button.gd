@@ -2,7 +2,7 @@ extends Button
 
 export(PackedScene) var level
 
+# Change level if not null
 func _on_Button_pressed():
-	print (level.get_path())
-	get_tree().change_scene(level.get_path())
-	
+	if (level != null):
+		get_tree().change_scene(level.get_path())

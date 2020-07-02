@@ -1,73 +1,86 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/levels/Level.gd" type="Script" id=1]
+[ext_resource path="res://assets/planets/PlanetGoal.png" type="Texture" id=2]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/levels/Level_3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/levels/Background.tscn" type="PackedScene" id=8]
 
-[sub_resource type="PhysicsMaterial" id=1]
-friction = 0.0
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends RigidBody2D
-
-export var target_planet = false
-
-#var velocity = Vector2() # TODO delete this if it doesn't cause any problems.
-onready var radius = ($Sprite.texture.get_height()/2) * $Sprite.scale.y
-
-func _ready():
-	if (target_planet):
-		mode = RigidBody2D.MODE_STATIC
-
-func _draw():
-	draw_circle(Vector2(), radius, \"#ffb2d90a\")
-"
+[sub_resource type="CircleShape2D" id=1]
+radius = 42.1333
 
 [node name="Level_2" type="Node"]
-pause_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 123.417 ],
 "_edit_vertical_guides_": [ 146.517 ]
 }
+level = ExtResource( 7 )
 
 [node name="Background" parent="." instance=ExtResource( 8 )]
 layer = 0
 
 [node name="Main" type="CanvasLayer" parent="."]
 
-[node name="Walls2" parent="Main" instance=ExtResource( 7 )]
-position = Vector2( 349.331, 449.741 )
-rotation = 1.55064
-scale = Vector2( 1, 5 )
-
 [node name="Player" parent="Main" instance=ExtResource( 5 )]
-position = Vector2( 614.176, 64.9273 )
+position = Vector2( 108.997, 82.2218 )
 
 [node name="Planet" parent="Main" instance=ExtResource( 6 )]
-position = Vector2( 362.767, 312.619 )
-scale = Vector2( 1.00496, 1.00743 )
-physics_material_override = SubResource( 1 )
-script = SubResource( 2 )
+position = Vector2( 808.959, 463.464 )
 target_planet = true
 
+[node name="Sprite" parent="Main/Planet" index="0"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Main/Planet" index="1"]
+shape = SubResource( 1 )
+
+[node name="Orbiter" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( -65.4398, 45.7066 )
+rotation_velocity = 20.0
+
+[node name="Orbiter2" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( 63.1665, -44.3178 )
+rotation_velocity = -20.0
+
+[node name="Orbiter3" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( -72.2987, -38.3161 )
+rotation_velocity = -20.0
+
+[node name="Orbiter4" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( 76.0272, 14.8412 )
+rotation_velocity = 20.0
+
+[node name="Orbiter5" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( -13.1398, -74.3259 )
+rotation_velocity = 20.0
+
+[node name="Orbiter6" parent="Main/Planet" instance=ExtResource( 4 )]
+position = Vector2( 12.5814, 63.7115 )
+rotation_velocity = -20.0
+
 [node name="Planet2" parent="Main" instance=ExtResource( 6 )]
-position = Vector2( 747.902, 267.157 )
+position = Vector2( 120.005, 117.503 )
 
 [node name="Planet3" parent="Main" instance=ExtResource( 6 )]
-position = Vector2( 603.932, 35.0562 )
+position = Vector2( 588.715, 176.394 )
+
+[node name="Orbiter" parent="Main/Planet3" instance=ExtResource( 4 )]
+position = Vector2( 40.8748, 82.5737 )
+rotation_velocity = -15.0
 
 [node name="Planet4" parent="Main" instance=ExtResource( 6 )]
-position = Vector2( 860.501, 60.3058 )
+position = Vector2( 324.942, 345.854 )
 
-[node name="Walls" parent="Main" instance=ExtResource( 7 )]
-position = Vector2( 187.288, 302.738 )
-rotation = 2.36853
-scale = Vector2( 10.4846, 1 )
+[node name="Orbiter" parent="Main/Planet4" instance=ExtResource( 4 )]
+position = Vector2( -5.42352, 96.2916 )
+rotation_velocity = 15.0
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 layer = 2
 [connection signal="win_condition" from="Main/Player" to="." method="_on_Player_win_condition"]
+
+[editable path="Main/Planet"]

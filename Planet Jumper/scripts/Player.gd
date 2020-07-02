@@ -152,7 +152,9 @@ func _on_Player_body_entered(body):
 	
 # If the player is not visible then make it a game over
 func _on_VisibilityEnabler2D_screen_exited():
-	if (is_attached == false):
+	var screen_resolution = get_viewport().size
+	# The if statement is needed since screen_exited signal fires whenever the scene is reloaded to make sure that it does not emit signal when Player is within the viewport
+	if (global_position.x > screen_resolution.x + 50 or global_position.x < -50 or global_position.y > screen_resolution.y + 50 or global_position.y < -50):
 		emit_signal("win_condition", false)
 
 # Whenever the button is pressed, move the Player
