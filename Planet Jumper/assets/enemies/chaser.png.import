@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Chaser.png-58898c15c812887ddbd73d847dd476d4.stex"
+path="res://.import/chaser.png-79d120525b3c4ac7bd4da025073862b7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/Chaser.png"
-dest_files=[ "res://.import/Chaser.png-58898c15c812887ddbd73d847dd476d4.stex" ]
+source_file="res://assets/enemies/chaser.png"
+dest_files=[ "res://.import/chaser.png-79d120525b3c4ac7bd4da025073862b7.stex" ]
 
 [params]
 
