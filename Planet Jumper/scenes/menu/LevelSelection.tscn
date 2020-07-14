@@ -65,7 +65,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level1" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level1" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_right = 221.0
 margin_bottom = 185.0
 size_flags_horizontal = 3
@@ -79,7 +81,9 @@ __meta__ = {
 }
 level = ExtResource( 3 )
 
-[node name="Level2" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level2" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 251.0
 margin_right = 472.0
 margin_bottom = 185.0
@@ -94,7 +98,9 @@ __meta__ = {
 }
 level = ExtResource( 14 )
 
-[node name="Level3" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level3" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 502.0
 margin_right = 723.0
 margin_bottom = 185.0
@@ -109,7 +115,9 @@ __meta__ = {
 }
 level = ExtResource( 15 )
 
-[node name="Level4" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level4" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 753.0
 margin_right = 974.0
 margin_bottom = 185.0
@@ -124,7 +132,9 @@ __meta__ = {
 }
 level = ExtResource( 16 )
 
-[node name="Level5" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level5" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_top = 215.0
 margin_right = 221.0
 margin_bottom = 400.0
@@ -138,7 +148,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level6" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level6" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 251.0
 margin_top = 215.0
 margin_right = 472.0
@@ -153,7 +165,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level7" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level7" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 502.0
 margin_top = 215.0
 margin_right = 723.0
@@ -168,7 +182,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level8" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="Level8" type="Button" parent="VBoxContainer/MarginContainer/GridContainer" groups=[
+"Levels",
+]]
 margin_left = 753.0
 margin_top = 215.0
 margin_right = 974.0

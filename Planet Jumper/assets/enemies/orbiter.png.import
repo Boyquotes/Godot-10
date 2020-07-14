@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Orbiter.png-1b246ce152e7d7b9519af5fe5c222452.stex"
+path="res://.import/orbiter.png-1b20b915f48f216d5fa8950d64169597.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/Orbiter.png"
-dest_files=[ "res://.import/Orbiter.png-1b246ce152e7d7b9519af5fe5c222452.stex" ]
+source_file="res://assets/enemies/orbiter.png"
+dest_files=[ "res://.import/orbiter.png-1b20b915f48f216d5fa8950d64169597.stex" ]
 
 [params]
 

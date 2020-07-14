@@ -12,7 +12,7 @@ func _on_Player_win_condition(is_won):
 		yield(get_tree().create_timer(1.5), "timeout")
 		
 		# Set the level to completed 
-		get_node("/root/LevelSelection").save_state(name)
+		StaticFunc.save_state(name)
 		
 		# If level is not null, go to the PackedScene level specified. Otherwise, go back to the Main Menu (because it's the end of menu).
 		if (level != null):
