@@ -1,15 +1,22 @@
 extends MarginContainer
 
 onready var option_flag = false
-onready var saved_state = null # TODO placeholder for holding onto saved states
+#onready var saved_state = null # TODO placeholder for holding onto saved states
 
 func _physics_process(delta):
 	show_options_menu() # Enabled when option_flag is set to true
 
 # If starting a new game, go through the tutorial. If not, continue where it was left off.
 func _on_Play_pressed():
-	saved_state = "res://scenes/levels/Level1.tscn"
-	get_tree().change_scene(saved_state)
+#	print ("Button Pressed")
+	var levels = StaticFunc.load_state()
+#	print ("levels:", levels)
+	for i in levels:
+#		print ("For Loop is Ran")
+		if (levels[i] == 0):
+			var scene_name = "res://scenes/levels/" + String(i) + ".tscn"
+			get_tree().change_scene(scene_name)
+			return
 
 # When Levels is touched
 func _on_Levels_pressed():

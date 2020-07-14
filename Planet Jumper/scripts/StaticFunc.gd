@@ -22,7 +22,10 @@ func load_state():
 		return level_dict
 	else:
 		# Set the levels to incomplete if there is no save file
+#		print ("Else ran")
 		var levels = get_tree().get_nodes_in_group("Levels")
+#		print ("levels: ", levels)
 		for level in levels:
+#			print ("level: ", level)
 			level_dict[level.name] = 0
 		return level_dict

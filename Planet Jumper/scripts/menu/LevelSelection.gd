@@ -4,6 +4,7 @@ onready var level_dict = {}
 
 func _ready():
 	level_dict = StaticFunc.load_state()
+	print ("Ran")
 	
 	# Change the icon for Level Buttons depending on the level-dict state
 	var levels = get_tree().get_nodes_in_group("Levels")
