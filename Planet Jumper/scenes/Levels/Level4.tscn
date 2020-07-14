@@ -1,25 +1,23 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://assets/planets/PlanetGoal.png" type="Texture" id=2]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/Chaser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/Walls.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/levels/Background.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/levels/Level_4.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 42.1333
 
-[node name="Level_3" type="Node"]
+[node name="Level4" type="Node"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 123.417 ],
 "_edit_vertical_guides_": [ 146.517 ]
 }
-level = ExtResource( 9 )
 
 [node name="Background" parent="." instance=ExtResource( 8 )]
 layer = 0
@@ -54,10 +52,6 @@ position = Vector2( 431.257, 513.042 )
 [node name="Planet6" parent="Main" instance=ExtResource( 6 )]
 position = Vector2( 800.785, 122.079 )
 
-[node name="Chaser" parent="Main" instance=ExtResource( 4 )]
-position = Vector2( 745.916, 294.08 )
-speed = 100.0
-
 [node name="Walls" parent="Main" instance=ExtResource( 7 )]
 position = Vector2( 276.075, 213.486 )
 scale = Vector2( 1, 12.48 )
@@ -65,6 +59,9 @@ scale = Vector2( 1, 12.48 )
 [node name="Walls2" parent="Main" instance=ExtResource( 7 )]
 position = Vector2( 597.59, 389.248 )
 scale = Vector2( 1, 12.48 )
+
+[node name="Cannon" parent="Main" instance=ExtResource( 4 )]
+position = Vector2( 966.078, 287.515 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 layer = 2

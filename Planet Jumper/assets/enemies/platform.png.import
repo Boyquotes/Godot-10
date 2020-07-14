@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/platform.png-228921d96189af60813810942c07c6a1.stex"
+path="res://.import/Platform.png-0ac6acaaaf4bb896224e840e29230074.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/platform.png"
-dest_files=[ "res://.import/platform.png-228921d96189af60813810942c07c6a1.stex" ]
+source_file="res://assets/enemies/Platform.png"
+dest_files=[ "res://.import/Platform.png-0ac6acaaaf4bb896224e840e29230074.stex" ]
 
 [params]
 

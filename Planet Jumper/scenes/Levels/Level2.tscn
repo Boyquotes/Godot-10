@@ -6,13 +6,13 @@
 [ext_resource path="res://scenes/enemies/Orbiter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Planet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/levels/Level_3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/levels/Level3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/levels/Background.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 42.1333
 
-[node name="Level_2" type="Node"]
+[node name="Level2" type="Node"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 123.417 ],
@@ -26,7 +26,7 @@ layer = 0
 [node name="Main" type="CanvasLayer" parent="."]
 
 [node name="Player" parent="Main" instance=ExtResource( 5 )]
-position = Vector2( 108.997, 82.2218 )
+position = Vector2( 828.997, 416.959 )
 
 [node name="Planet" parent="Main" instance=ExtResource( 6 )]
 position = Vector2( 808.959, 463.464 )
