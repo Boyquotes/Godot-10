@@ -1,0 +1,245 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/players/PlayerSheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/planets/Planet1.png" type="Texture" id=2]
+[ext_resource path="res://assets/hud/SmallHandleFilledGrey.png" type="Texture" id=3]
+[ext_resource path="res://assets/hud/joystick.png" type="Texture" id=4]
+[ext_resource path="res://assets/hud/arrow.png" type="Texture" id=5]
+[ext_resource path="res://assets/planets/PlanetGoal.png" type="Texture" id=6]
+[ext_resource path="res://assets/hud/ButtonOn.png" type="Texture" id=7]
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 9 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://assets/fonts/GrenzeGotisch-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 23
+extra_spacing_bottom = -12
+font_data = SubResource( 7 )
+
+[node name="Tutorial1" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.40747
+margin_top = 2.37396
+margin_right = -1.40747
+margin_bottom = 2.37396
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 150.0
+margin_top = 77.0
+margin_right = -150.0
+margin_bottom = -82.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Right" type="Control" parent="Movement"]
+anchor_bottom = 1.0
+margin_right = 365.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerRight" type="AnimatedSprite" parent="Movement/Right"]
+position = Vector2( 201.74, 142.595 )
+frames = SubResource( 6 )
+animation = "jump"
+playing = true
+
+[node name="PlanetRight" type="Sprite" parent="Movement/Right"]
+position = Vector2( 192.874, 216.07 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="ArrowRight" type="Sprite" parent="Movement/Right"]
+position = Vector2( 195.793, 347.905 )
+scale = Vector2( 0.418338, 0.252153 )
+texture = ExtResource( 5 )
+
+[node name="JoystickRight" type="Sprite" parent="Movement/Right"]
+position = Vector2( 116.332, 347.381 )
+scale = Vector2( 0.418338, 0.418338 )
+texture = ExtResource( 4 )
+
+[node name="Stick" type="Sprite" parent="Movement/Right/JoystickRight"]
+position = Vector2( 57.9338, -3.86224 )
+texture = ExtResource( 3 )
+
+[node name="MovementRight" type="Label" parent="Movement/Right"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 18.0
+margin_right = -124.0
+margin_bottom = -318.0
+custom_fonts/font = SubResource( 8 )
+text = "Drag the Joystick
+to the right to 
+move the astronaut
+right"
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Control" parent="Movement"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -389.0
+
+[node name="PlayerLeft" type="AnimatedSprite" parent="Movement/Left"]
+position = Vector2( 170.651, 142.595 )
+frames = SubResource( 6 )
+animation = "jump"
+playing = true
+flip_h = true
+
+[node name="PlanetLeft" type="Sprite" parent="Movement/Left"]
+position = Vector2( 179.784, 216.07 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="ArrowLeft" type="Sprite" parent="Movement/Left"]
+position = Vector2( 131.978, 354.451 )
+rotation = 3.14159
+scale = Vector2( 0.418338, 0.252153 )
+texture = ExtResource( 5 )
+
+[node name="JoystickLeft" type="Sprite" parent="Movement/Left"]
+position = Vector2( 229.236, 352.29 )
+scale = Vector2( 0.418338, 0.418338 )
+texture = ExtResource( 4 )
+
+[node name="Stick" type="Sprite" parent="Movement/Left/JoystickLeft"]
+position = Vector2( -67.2308, 7.87189 )
+texture = ExtResource( 3 )
+
+[node name="MovementRight2" type="Label" parent="Movement/Left"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 150.0
+margin_right = -16.0
+margin_bottom = -318.0
+custom_fonts/font = SubResource( 8 )
+text = "Drag the Joystick
+to the left to 
+move the astronaut
+left"
+align = 2
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jump" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 150.0
+margin_top = 77.0
+margin_right = -150.0
+margin_bottom = -82.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Player" type="AnimatedSprite" parent="Jump"]
+position = Vector2( 272.117, 211.565 )
+rotation = 1.5708
+frames = SubResource( 6 )
+animation = "jump"
+
+[node name="Planet" type="Sprite" parent="Jump"]
+position = Vector2( 180.206, 209.032 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="PlanetGoal" type="Sprite" parent="Jump"]
+position = Vector2( 553.206, 216.07 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 6 )
+
+[node name="JumpButton" type="Sprite" parent="Jump"]
+position = Vector2( 471.034, 369.902 )
+scale = Vector2( 0.418338, 0.418338 )
+texture = ExtResource( 7 )
+
+[node name="Arrow" type="Sprite" parent="Jump"]
+position = Vector2( 385.173, 329.787 )
+rotation = 0.463368
+scale = Vector2( 0.418338, 0.236896 )
+texture = ExtResource( 5 )
+
+[node name="MovementRight" type="Label" parent="Jump"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = 0.00319172
+anchor_right = 1.0
+anchor_bottom = 1.00319
+margin_left = 174.0
+margin_top = 23.0
+margin_right = -184.0
+margin_bottom = -353.0
+custom_fonts/font = SubResource( 8 )
+text = "Press the Jump Button to Lauch the Astronaut to your Goal! "
+align = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Previous" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 218.743
+margin_top = -81.3704
+margin_right = 568.743
+margin_bottom = 180.63
+rect_rotation = 180.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -219.975
+margin_top = -132.973
+margin_right = 130.025
+margin_bottom = 129.027
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
