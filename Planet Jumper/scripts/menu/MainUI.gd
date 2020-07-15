@@ -8,15 +8,19 @@ func _physics_process(delta):
 
 # If starting a new game, go through the tutorial. If not, continue where it was left off.
 func _on_Play_pressed():
-#	print ("Button Pressed")
+	var scene_name = ""
 	var levels = StaticFunc.load_state()
-#	print ("levels:", levels)
-	for i in levels:
-#		print ("For Loop is Ran")
-		if (levels[i] == 0):
-			var scene_name = "res://scenes/levels/" + String(i) + ".tscn"
-			get_tree().change_scene(scene_name)
-			return
+	
+	if (levels.empty()):
+		scene_name = "res://scenes/levels/Level1.tscn"
+	else:
+		var file = File.new()
+		if (file.file_exists("res://scenes/levels/" + levels["NextLevel"] + ".tscn")):
+			scene_name = "res://scenes/levels/" + levels["NextLevel"] + ".tscn"
+		else:
+			scene_name = "res://scenes/levels/" + levels["CurrentLevel"] + ".tscn"
+		file.close()
+	get_tree().change_scene(scene_name)
 
 # When Levels is touched
 func _on_Levels_pressed():

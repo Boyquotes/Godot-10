@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [autoload]
 
 StaticFunc="*res://scripts/StaticFunc.gd"
-LevelSelection="res://scenes/menu/LevelSelection.tscn"
 
 [input]
 

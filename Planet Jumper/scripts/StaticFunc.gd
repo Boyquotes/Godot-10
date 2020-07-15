@@ -6,6 +6,11 @@ onready var state_file = "user://state.save"
 # Save state
 func save_state(level_name):
 	level_dict[level_name] = 1
+	
+	# Operation to get the name of the next level
+	var next_level = int(level_name.substr(5)) + 1 # Remove the first 5 letters (returns 11 of Level11), convert it to int, then add 1
+	level_dict["NextLevel"] = "Level" + String(next_level)
+	level_dict["CurrentLevel"] = level_name
 
 	var file = File.new()
 	file.open(state_file, File.WRITE)
@@ -19,13 +24,5 @@ func load_state():
 		file.open(state_file, File.READ)
 		level_dict = file.get_var()
 		file.close()
-		return level_dict
-	else:
-		# Set the levels to incomplete if there is no save file
-#		print ("Else ran")
-		var levels = get_tree().get_nodes_in_group("Levels")
-#		print ("levels: ", levels)
-		for level in levels:
-#			print ("level: ", level)
-			level_dict[level.name] = 0
-		return level_dict
+
+	return level_dict
