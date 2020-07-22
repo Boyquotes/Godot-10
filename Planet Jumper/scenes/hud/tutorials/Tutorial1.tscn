@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/players/PlayerSheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/planets/Planet1.png" type="Texture" id=2]
@@ -7,35 +7,40 @@
 [ext_resource path="res://assets/hud/arrow.png" type="Texture" id=5]
 [ext_resource path="res://assets/planets/PlanetGoal.png" type="Texture" id=6]
 [ext_resource path="res://assets/hud/ButtonOn.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemies/platform.png" type="Texture" id=8]
+[ext_resource path="res://assets/hud/X.png" type="Texture" id=9]
+[ext_resource path="res://scripts/hud/Tutorial.gd" type="Script" id=10]
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 128, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 1 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://assets/fonts/GrenzeGotisch-VariableFont_wght.ttf"
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=4]
 size = 23
 extra_spacing_bottom = -12
-font_data = SubResource( 7 )
+font_data = SubResource( 3 )
 
 [node name="Tutorial1" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.40747
 margin_top = 2.37396
 margin_right = -1.40747
 margin_bottom = 2.37396
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,7 +66,7 @@ __meta__ = {
 
 [node name="PlayerRight" type="AnimatedSprite" parent="Movement/Right"]
 position = Vector2( 201.74, 142.595 )
-frames = SubResource( 6 )
+frames = SubResource( 2 )
 animation = "jump"
 playing = true
 
@@ -84,14 +89,14 @@ texture = ExtResource( 4 )
 position = Vector2( 57.9338, -3.86224 )
 texture = ExtResource( 3 )
 
-[node name="MovementRight" type="Label" parent="Movement/Right"]
+[node name="MovementRightText" type="Label" parent="Movement/Right"]
 modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 18.0
 margin_right = -124.0
 margin_bottom = -318.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 4 )
 text = "Drag the Joystick
 to the right to 
 move the astronaut
@@ -111,7 +116,7 @@ margin_left = -389.0
 
 [node name="PlayerLeft" type="AnimatedSprite" parent="Movement/Left"]
 position = Vector2( 170.651, 142.595 )
-frames = SubResource( 6 )
+frames = SubResource( 2 )
 animation = "jump"
 playing = true
 flip_h = true
@@ -136,14 +141,14 @@ texture = ExtResource( 4 )
 position = Vector2( -67.2308, 7.87189 )
 texture = ExtResource( 3 )
 
-[node name="MovementRight2" type="Label" parent="Movement/Left"]
+[node name="MovementLeftText" type="Label" parent="Movement/Left"]
 modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
 margin_right = -16.0
 margin_bottom = -318.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 4 )
 text = "Drag the Joystick
 to the left to 
 move the astronaut
@@ -172,7 +177,7 @@ __meta__ = {
 [node name="Player" type="AnimatedSprite" parent="Jump"]
 position = Vector2( 272.117, 211.565 )
 rotation = 1.5708
-frames = SubResource( 6 )
+frames = SubResource( 2 )
 animation = "jump"
 
 [node name="Planet" type="Sprite" parent="Jump"]
@@ -196,7 +201,7 @@ rotation = 0.463368
 scale = Vector2( 0.418338, 0.236896 )
 texture = ExtResource( 5 )
 
-[node name="MovementRight" type="Label" parent="Jump"]
+[node name="JumpText" type="Label" parent="Jump"]
 modulate = Color( 0, 0, 0, 1 )
 anchor_top = 0.00319172
 anchor_right = 1.0
@@ -205,8 +210,57 @@ margin_left = 174.0
 margin_top = 23.0
 margin_right = -184.0
 margin_bottom = -353.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 4 )
 text = "Press the Jump Button to Lauch the Astronaut to your Goal! "
+align = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Walls" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 150.0
+margin_top = 77.0
+margin_right = -150.0
+margin_bottom = -82.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Player" type="AnimatedSprite" parent="Walls"]
+position = Vector2( 355.162, 246.754 )
+rotation = 1.5708
+frames = SubResource( 2 )
+animation = "jump"
+
+[node name="Wall" type="Sprite" parent="Walls"]
+position = Vector2( 417.337, 247.024 )
+scale = Vector2( 0.362206, 3.61715 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Walls"]
+position = Vector2( 398.335, 253.358 )
+scale = Vector2( 0.0828427, 0.0698138 )
+texture = ExtResource( 9 )
+
+[node name="WallText" type="Label" parent="Walls"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_top = 0.00319172
+anchor_right = 1.0
+anchor_bottom = 1.00319
+margin_left = 174.0
+margin_top = 22.5925
+margin_right = -184.0
+margin_bottom = -330.407
+custom_fonts/font = SubResource( 4 )
+text = "Watch Out for the Walls!
+Crash Into Them and it's Game Over!"
 align = 1
 autowrap = true
 clip_text = true
@@ -243,3 +297,5 @@ icon = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="Previous" to="." method="_on_Previous_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
